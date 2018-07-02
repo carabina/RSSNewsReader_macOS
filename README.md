@@ -1,1 +1,2 @@
-RSSNewsReader_macOS
+# RSSNewsReader_macOS
+RSSNewsReader on macOS
