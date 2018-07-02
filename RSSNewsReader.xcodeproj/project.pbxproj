@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		636A11D120EA20BA008164A1 /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A11D020EA20BA008164A1 /* NSColorExtension.swift */; };
 		639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639756F020E9CBBD00208382 /* AppDelegate.swift */; };
 		639756F320E9CBBD00208382 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639756F220E9CBBD00208382 /* ViewController.swift */; };
 		639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 639756F420E9CBBD00208382 /* RSSNewsReader.xcdatamodeld */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		636A11D020EA20BA008164A1 /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
 		639756ED20E9CBBD00208382 /* RSSNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639756F020E9CBBD00208382 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639756F220E9CBBD00208382 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		636A11CE20EA2089008164A1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				6397571320E9F3DB00208382 /* Detail */,
+				6397571220E9F3C400208382 /* Preview */,
+				6397571120E9F3A700208382 /* FeedProvider */,
+				639756F220E9CBBD00208382 /* ViewController.swift */,
+				639756F920E9CBBF00208382 /* Main.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		636A11CF20EA20A4008164A1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				636A11D020EA20BA008164A1 /* NSColorExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		639756E420E9CBBD00208382 = {
 			isa = PBXGroup;
 			children = (
@@ -84,13 +106,10 @@
 		639756EF20E9CBBD00208382 /* RSSNewsReader */ = {
 			isa = PBXGroup;
 			children = (
-				6397571320E9F3DB00208382 /* Detail */,
-				6397571220E9F3C400208382 /* Preview */,
-				6397571120E9F3A700208382 /* FeedProvider */,
+				636A11CF20EA20A4008164A1 /* Extension */,
+				636A11CE20EA2089008164A1 /* Presentation */,
 				639756F020E9CBBD00208382 /* AppDelegate.swift */,
-				639756F220E9CBBD00208382 /* ViewController.swift */,
 				639756F720E9CBBE00208382 /* Assets.xcassets */,
-				639756F920E9CBBF00208382 /* Main.storyboard */,
 				639756FC20E9CBBF00208382 /* Info.plist */,
 				639756FD20E9CBBF00208382 /* RSSNewsReader.entitlements */,
 				639756F420E9CBBD00208382 /* RSSNewsReader.xcdatamodeld */,
@@ -242,6 +261,7 @@
 			files = (
 				639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */,
 				6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */,
+				636A11D120EA20BA008164A1 /* NSColorExtension.swift in Sources */,
 				639756F320E9CBBD00208382 /* ViewController.swift in Sources */,
 				6397571720EA00F100208382 /* FeedProviderViewController.swift in Sources */,
 				639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */,
