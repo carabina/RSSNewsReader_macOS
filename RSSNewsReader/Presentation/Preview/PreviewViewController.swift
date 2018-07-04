@@ -13,9 +13,13 @@ class PreviewViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        //self.preferredMinimumSize =
+        self.preferredContentSize = NSSize(width: 300, height: 600)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
-    
 }
 
 extension PreviewViewController: NSTableViewDataSource {
@@ -26,6 +30,8 @@ extension PreviewViewController: NSTableViewDataSource {
 
 extension PreviewViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        return tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("\(PreviewTableCellView.self)"), owner: self)
+        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "\(PreviewTblCellView.self)"), owner: self)
+        
+        return view
     }
 }

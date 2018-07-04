@@ -18,6 +18,8 @@ class FeedProviderViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.preferredContentSize = NSSize(width: 200, height: 500)
+        
         topbarView.wantsLayer = true
         topbarView.layer?.backgroundColor = NSColor.hex(0xf6f6f6).cgColor
         

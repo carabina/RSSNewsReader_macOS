@@ -8,9 +8,9 @@
 
 import Cocoa
 
-class PreviewTableCellView: NSTableCellView {
+class PreviewTblCellView: NSTableCellView {
     @IBOutlet weak var thumbnail: NSImageView!
-    @IBOutlet weak var title: NSTextField!
+    @IBOutlet weak var articleTitle: NSTextField!
     @IBOutlet weak var providerThumbnail: NSImageView!
     @IBOutlet weak var providerName: NSTextField!
 }
