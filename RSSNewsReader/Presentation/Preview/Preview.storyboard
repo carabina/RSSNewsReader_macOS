@@ -9,18 +9,100 @@
         <scene sceneID="vzw-be-5GH">
             <objects>
                 <viewController id="8ke-ha-hir" customClass="PreviewViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="gx4-lL-JPt">
+                    <view key="view" id="gx4-lL-JPt" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pow-hh-R0d" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="220" width="300" height="80"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Igy-zv-lSn" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="35" width="300" height="45"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgn-Yu-K1G">
+                                                <rect key="frame" x="93" y="15" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="OOY-Fg-48P"/>
+                                                    <constraint firstAttribute="width" constant="15" id="bYk-Rg-kB4"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="PoK-KU-dl7"/>
+                                            </imageView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wm-QD-oEj">
+                                                <rect key="frame" x="111" y="10" width="99" height="26"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Outstanding" id="ig5-ZY-yZw">
+                                                    <font key="font" size="18" name="AppleSDGothicNeo-SemiBold"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="z7I-nZ-Zfy" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="UFC-xL-ZCz"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </customView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="z7I-nZ-Zfy" secondAttribute="trailing" id="4lG-u0-cnW"/>
+                                            <constraint firstAttribute="height" constant="45" id="LCF-cI-CON"/>
+                                            <constraint firstAttribute="bottom" secondItem="z7I-nZ-Zfy" secondAttribute="bottom" id="Tel-uF-w59"/>
+                                            <constraint firstItem="4wm-QD-oEj" firstAttribute="centerY" secondItem="Igy-zv-lSn" secondAttribute="centerY" id="fiy-xI-nOF"/>
+                                            <constraint firstItem="pgn-Yu-K1G" firstAttribute="centerY" secondItem="Igy-zv-lSn" secondAttribute="centerY" id="kk2-Qq-03t"/>
+                                            <constraint firstItem="4wm-QD-oEj" firstAttribute="leading" secondItem="pgn-Yu-K1G" secondAttribute="trailing" constant="5" id="qmx-Sx-492"/>
+                                            <constraint firstItem="4wm-QD-oEj" firstAttribute="centerX" secondItem="Igy-zv-lSn" secondAttribute="centerX" constant="10" id="wyE-sR-q8N"/>
+                                            <constraint firstItem="z7I-nZ-Zfy" firstAttribute="leading" secondItem="Igy-zv-lSn" secondAttribute="leading" id="yZp-DC-zFc"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xkw-Z8-RZ1" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
+                                        <subviews>
+                                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgj-DP-tbT">
+                                                <rect key="frame" x="10" y="7" width="200" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="hHd-pQ-8Hg"/>
+                                                </constraints>
+                                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="기사 검색" usesSingleLineMode="YES" bezelStyle="round" id="bxQ-oX-S7m">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </searchFieldCell>
+                                            </searchField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Wgj-DP-tbT" firstAttribute="centerY" secondItem="xkw-Z8-RZ1" secondAttribute="centerY" id="gTh-6h-846"/>
+                                            <constraint firstItem="Wgj-DP-tbT" firstAttribute="leading" secondItem="xkw-Z8-RZ1" secondAttribute="leading" constant="10" id="kUN-am-BtX"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Igy-zv-lSn" secondAttribute="trailing" id="1dM-Jk-wuG"/>
+                                    <constraint firstAttribute="height" constant="80" id="2Df-Xw-kXn"/>
+                                    <constraint firstAttribute="bottom" secondItem="xkw-Z8-RZ1" secondAttribute="bottom" id="O0Q-sY-nox"/>
+                                    <constraint firstItem="xkw-Z8-RZ1" firstAttribute="leading" secondItem="pow-hh-R0d" secondAttribute="leading" id="UQF-Ed-GrU"/>
+                                    <constraint firstItem="xkw-Z8-RZ1" firstAttribute="top" secondItem="Igy-zv-lSn" secondAttribute="bottom" id="hMy-8r-ReS"/>
+                                    <constraint firstAttribute="trailing" secondItem="xkw-Z8-RZ1" secondAttribute="trailing" id="s1n-Bz-RWt"/>
+                                    <constraint firstItem="Igy-zv-lSn" firstAttribute="leading" secondItem="pow-hh-R0d" secondAttribute="leading" id="tfK-1P-S0i"/>
+                                    <constraint firstItem="Igy-zv-lSn" firstAttribute="top" secondItem="pow-hh-R0d" secondAttribute="top" id="uJT-Up-f62"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="0.97647058823529409" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEc-i8-nR2">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="265"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
                                 <clipView key="contentView" id="mda-mO-5Ug">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="265"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" viewBased="YES" id="M6c-Iz-3rS">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="265"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
@@ -111,11 +193,19 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="DEc-i8-nR2" firstAttribute="top" secondItem="gx4-lL-JPt" secondAttribute="top" constant="35" id="1Z1-y9-Kx9"/>
+                            <constraint firstItem="pow-hh-R0d" firstAttribute="top" secondItem="gx4-lL-JPt" secondAttribute="top" id="KOJ-uY-TvP"/>
+                            <constraint firstItem="DEc-i8-nR2" firstAttribute="top" secondItem="pow-hh-R0d" secondAttribute="bottom" id="RCH-EX-Yd1"/>
                             <constraint firstAttribute="trailing" secondItem="DEc-i8-nR2" secondAttribute="trailing" id="cjT-53-YYq"/>
                             <constraint firstItem="DEc-i8-nR2" firstAttribute="leading" secondItem="gx4-lL-JPt" secondAttribute="leading" id="fUZ-IJ-PEE"/>
                             <constraint firstAttribute="bottom" secondItem="DEc-i8-nR2" secondAttribute="bottom" id="pjb-fg-N7K"/>
+                            <constraint firstItem="pow-hh-R0d" firstAttribute="leading" secondItem="gx4-lL-JPt" secondAttribute="leading" id="uqt-bU-yse"/>
+                            <constraint firstAttribute="trailing" secondItem="pow-hh-R0d" secondAttribute="trailing" id="xk3-Ax-sBA"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                <color key="value" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>

@@ -14,7 +14,6 @@ class PreviewViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.preferredMinimumSize =
         self.preferredContentSize = NSSize(width: 300, height: 600)
         
         tableView.dataSource = self

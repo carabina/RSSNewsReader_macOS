@@ -11,4 +11,5 @@ import Cocoa
 class FeedProviderCellView: NSTableCellView {
     @IBOutlet weak var feedImageView: NSImageView!
     @IBOutlet weak var feedTextField: NSTextField!
+    @IBOutlet weak var feedTotalCnt: NSTextField!
 }
