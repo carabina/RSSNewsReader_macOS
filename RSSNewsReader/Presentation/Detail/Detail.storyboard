@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="wAV-1z-91J">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="MSp-Kf-ws0">
+            <objects>
+                <viewController id="wAV-1z-91J" customClass="DetailViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Thk-iw-1wR">
+                        <rect key="frame" x="0.0" y="0.0" width="305" height="383"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kj8-mq-XwJ" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="343" width="305" height="40"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gne-9I-smk">
+                                        <rect key="frame" x="10" y="9" width="20" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="rbu-dx-oJA"/>
+                                            <constraint firstAttribute="height" constant="20" id="x9s-7M-E6K"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzw-4w-A2B">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Gne-9I-smk" firstAttribute="centerY" secondItem="Kj8-mq-XwJ" secondAttribute="centerY" id="JUx-XD-zBP"/>
+                                    <constraint firstItem="Gne-9I-smk" firstAttribute="leading" secondItem="Kj8-mq-XwJ" secondAttribute="leading" constant="10" id="Qxj-cy-URZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="eut-aQ-ZyK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Kj8-mq-XwJ" secondAttribute="trailing" id="eFk-FR-s6L"/>
+                            <constraint firstItem="Kj8-mq-XwJ" firstAttribute="top" secondItem="Thk-iw-1wR" secondAttribute="top" id="jp1-wi-U6d"/>
+                            <constraint firstItem="Kj8-mq-XwJ" firstAttribute="leading" secondItem="Thk-iw-1wR" secondAttribute="leading" id="xeH-5B-Q3C"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="DJD-Kq-5ax" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-346.5" y="-20.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
+</document>

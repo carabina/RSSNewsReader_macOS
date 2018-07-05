@@ -708,6 +708,7 @@
                     <splitViewItems>
                         <splitViewItem id="FQu-y9-rM6"/>
                         <splitViewItem id="PKR-Y2-034"/>
+                        <splitViewItem id="XLy-w5-Yof"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="Jrw-fu-UNf">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -720,6 +721,7 @@
                         <outlet property="splitView" destination="Jrw-fu-UNf" id="fFS-Pm-Ovw"/>
                         <segue destination="VLK-bs-qAm" kind="relationship" relationship="splitItems" id="xia-2n-D8p"/>
                         <segue destination="GVk-Fs-Nb1" kind="relationship" relationship="splitItems" id="xWX-Uw-5vS"/>
+                        <segue destination="iX4-az-kFL" kind="relationship" relationship="splitItems" id="2Pr-Xi-Bip"/>
                     </connections>
                 </splitViewController>
                 <customObject id="8p8-xh-pQN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -732,7 +734,7 @@
                 <controllerPlaceholder storyboardName="FeedProvider" id="VLK-bs-qAm" sceneMemberID="viewController"/>
                 <customObject id="ltv-X1-4ot" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="623" y="639"/>
+            <point key="canvasLocation" x="666" y="636"/>
         </scene>
         <!--Preview-->
         <scene sceneID="Sh2-BX-8Wd">
@@ -741,6 +743,14 @@
                 <customObject id="kmG-eI-fhN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="649" y="772"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="Kq2-vG-vFw">
+            <objects>
+                <controllerPlaceholder storyboardName="Detail" id="iX4-az-kFL" sceneMemberID="viewController"/>
+                <customObject id="CiP-zr-aMJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="643" y="899"/>
         </scene>
     </scenes>
 </document>

@@ -23,18 +23,9 @@ class FeedProviderViewController: NSViewController {
         super.viewDidLoad()
         
         self.preferredContentSize = NSSize(width: 200, height: 500)
-        
-//        topbarView.wantsLayer = true
-//        topbarView.layer?.backgroundColor = NSColor.hex(0xf6f6f6).cgColor
-        
-        fixedTblManager = FixedTableViewManager()
-        feedTblManager = FeedTableViewManager()
-        
-        fixedTableView.dataSource = fixedTblManager
-        fixedTableView.delegate = fixedTblManager
-        
-        feedTableView.dataSource = feedTblManager
-        feedTableView.delegate = feedTblManager
+ 
+        fixedTblManager = FixedTableViewManager(tableView: fixedTableView)
+        feedTblManager = FeedTableViewManager(tableView: feedTableView)
     }
     
     override func viewWillAppear() {

@@ -10,6 +10,16 @@ import Cocoa
 
 class FeedTableViewManager: NSObject {
     let cellTitles = ["Outstanding", "TechNeedle"]
+    var tableView: NSTableView!
+    
+    init(tableView: NSTableView) {
+        super.init()
+        
+        self.tableView = tableView
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.selectionHighlightStyle = .none
+    }
 }
 
 extension FeedTableViewManager: NSTableViewDataSource {
@@ -27,4 +37,10 @@ extension FeedTableViewManager: NSTableViewDelegate {
         
         return cell
     }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let rowView = tableView.rowView(atRow: tableView.selectedRow, makeIfNecessary: false)
+        rowView?.isEmphasized = false
+    }
 }
+
