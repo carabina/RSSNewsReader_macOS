@@ -10,17 +10,17 @@
             <objects>
                 <viewController id="8ke-ha-hir" customClass="PreviewViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gx4-lL-JPt" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="pow-hh-R0d" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="220" width="300" height="80"/>
+                                <rect key="frame" x="0.0" y="220" width="350" height="80"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Igy-zv-lSn" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="35" width="300" height="45"/>
+                                        <rect key="frame" x="0.0" y="35" width="350" height="45"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgn-Yu-K1G">
-                                                <rect key="frame" x="93" y="15" width="15" height="15"/>
+                                                <rect key="frame" x="118" y="15" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="OOY-Fg-48P"/>
                                                     <constraint firstAttribute="width" constant="15" id="bYk-Rg-kB4"/>
@@ -28,7 +28,7 @@
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="PoK-KU-dl7"/>
                                             </imageView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wm-QD-oEj">
-                                                <rect key="frame" x="111" y="10" width="99" height="26"/>
+                                                <rect key="frame" x="136" y="10" width="99" height="26"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Outstanding" id="ig5-ZY-yZw">
                                                     <font key="font" size="18" name="AppleSDGothicNeo-SemiBold"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,7 +36,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="z7I-nZ-Zfy" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="1"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="UFC-xL-ZCz"/>
                                                 </constraints>
@@ -59,12 +59,12 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="xkw-Z8-RZ1" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="35"/>
                                         <subviews>
                                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgj-DP-tbT">
-                                                <rect key="frame" x="10" y="7" width="200" height="22"/>
+                                                <rect key="frame" x="10" y="7" width="300" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="hHd-pQ-8Hg"/>
+                                                    <constraint firstAttribute="width" constant="300" id="hHd-pQ-8Hg"/>
                                                 </constraints>
                                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="기사 검색" usesSingleLineMode="YES" bezelStyle="round" id="bxQ-oX-S7m">
                                                     <font key="font" metaFont="system"/>
@@ -72,10 +72,23 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </searchFieldCell>
                                             </searchField>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="FCq-mY-rqK">
+                                                <rect key="frame" x="320" y="8" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="Qas-gz-U1I"/>
+                                                    <constraint firstAttribute="height" constant="20" id="T8K-mq-xAJ"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon_check" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Kwe-rD-7eP">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="FCq-mY-rqK" firstAttribute="leading" secondItem="Wgj-DP-tbT" secondAttribute="trailing" constant="10" id="bSf-bx-vuH"/>
                                             <constraint firstItem="Wgj-DP-tbT" firstAttribute="centerY" secondItem="xkw-Z8-RZ1" secondAttribute="centerY" id="gTh-6h-846"/>
                                             <constraint firstItem="Wgj-DP-tbT" firstAttribute="leading" secondItem="xkw-Z8-RZ1" secondAttribute="leading" constant="10" id="kUN-am-BtX"/>
+                                            <constraint firstItem="FCq-mY-rqK" firstAttribute="centerY" secondItem="xkw-Z8-RZ1" secondAttribute="centerY" id="y7q-XS-Jqu"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
@@ -95,20 +108,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEc-i8-nR2">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="110" horizontalPageScroll="10" verticalLineScroll="110" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEc-i8-nR2">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
                                 <clipView key="contentView" id="mda-mO-5Ug">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" viewBased="YES" id="M6c-Iz-3rS">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="220"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="110" viewBased="YES" id="M6c-Iz-3rS">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="300" minWidth="10" maxWidth="3.4028234663852886e+38" id="8W1-Nd-eav">
+                                                <tableColumn identifier="" width="350" minWidth="10" maxWidth="3.4028234663852886e+38" id="8W1-Nd-eav">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -121,12 +134,12 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="PreviewTblCellView" id="Ixk-Xs-9Nc" customClass="PreviewTblCellView" customModule="RSSNewsReader" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
+                                                        <tableCellView identifier="PreviewTblCellView" misplaced="YES" id="Ixk-Xs-9Nc" customClass="PreviewTblCellView" customModule="RSSNewsReader" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="110"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9xW-7T-gRo">
-                                                                    <rect key="frame" x="10" y="8" width="65" height="65"/>
+                                                                    <rect key="frame" x="10" y="23" width="65" height="65"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="65" id="YR5-WX-sYf"/>
                                                                         <constraint firstAttribute="width" constant="65" id="cTY-zt-xMq"/>
@@ -134,15 +147,15 @@
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="2sa-lb-ws6"/>
                                                                 </imageView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YNo-ka-rmO">
-                                                                    <rect key="frame" x="83" y="51" width="60" height="24"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="기사 제목" id="dlP-Eb-WCi">
+                                                                    <rect key="frame" x="83" y="71" width="298" height="24"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" enabled="NO" sendsActionOnEndEditing="YES" title="IT벤처업계, 주 52시간 근무제..어떻게 생각하세요?" id="dlP-Eb-WCi">
                                                                         <font key="font" size="15" name="AppleSDGothicNeo-Regular"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ASa-OV-oc4">
-                                                                    <rect key="frame" x="83" y="28" width="87" height="19"/>
+                                                                    <rect key="frame" x="83" y="15" width="87" height="19"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Feed 사이트 이름" id="fkf-op-ROB">
                                                                         <font key="font" size="12" name="AppleSDGothicNeo-Regular"/>
                                                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -150,7 +163,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y7z-d1-gdX">
-                                                                    <rect key="frame" x="248" y="28" width="39" height="19"/>
+                                                                    <rect key="frame" x="342" y="15" width="39" height="19"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="몇 일전" id="ipm-lA-vKu">
                                                                         <font key="font" size="12" name="AppleSDGothicNeo-Regular"/>
                                                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -160,14 +173,16 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="Y7z-d1-gdX" secondAttribute="trailing" constant="15" id="1Fw-g8-plD"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Y7z-d1-gdX" secondAttribute="bottom" constant="15" id="EqN-Od-i2B"/>
                                                                 <constraint firstItem="ASa-OV-oc4" firstAttribute="leading" secondItem="9xW-7T-gRo" secondAttribute="trailing" constant="10" id="Gzs-Qm-M92"/>
-                                                                <constraint firstItem="ASa-OV-oc4" firstAttribute="top" secondItem="YNo-ka-rmO" secondAttribute="bottom" constant="4" id="OJq-3t-PiB"/>
+                                                                <constraint firstItem="ASa-OV-oc4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YNo-ka-rmO" secondAttribute="bottom" constant="5" id="OJq-3t-PiB"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ASa-OV-oc4" secondAttribute="bottom" constant="15" id="Xjo-oy-Ics"/>
                                                                 <constraint firstItem="9xW-7T-gRo" firstAttribute="leading" secondItem="Ixk-Xs-9Nc" secondAttribute="leading" constant="10" id="beE-Uc-wDi"/>
                                                                 <constraint firstItem="9xW-7T-gRo" firstAttribute="centerY" secondItem="Ixk-Xs-9Nc" secondAttribute="centerY" id="dTU-0f-wtf"/>
                                                                 <constraint firstItem="YNo-ka-rmO" firstAttribute="leading" secondItem="9xW-7T-gRo" secondAttribute="trailing" constant="10" id="fOQ-Uc-rIj"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YNo-ka-rmO" secondAttribute="trailing" constant="15" id="lrD-g2-2nb"/>
-                                                                <constraint firstItem="YNo-ka-rmO" firstAttribute="top" secondItem="Ixk-Xs-9Nc" secondAttribute="top" constant="5" id="mDD-Gi-HSP"/>
-                                                                <constraint firstItem="Y7z-d1-gdX" firstAttribute="top" secondItem="YNo-ka-rmO" secondAttribute="bottom" constant="4" id="zwe-AY-R1M"/>
+                                                                <constraint firstItem="YNo-ka-rmO" firstAttribute="top" secondItem="Ixk-Xs-9Nc" secondAttribute="top" constant="15" id="mDD-Gi-HSP"/>
+                                                                <constraint firstItem="Y7z-d1-gdX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YNo-ka-rmO" secondAttribute="bottom" constant="5" id="zwe-AY-R1M"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="articleTitle" destination="YNo-ka-rmO" id="4VT-KF-nb4"/>
@@ -219,4 +234,7 @@
             <point key="canvasLocation" x="114" y="3"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_check" width="37.5" height="37.5"/>
+    </resources>
 </document>
