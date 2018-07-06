@@ -24,7 +24,8 @@ class FixedTableViewManager: NSObject {
 
 extension FixedTableViewManager: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return titles.count
+//        return titles.count
+        return 0
     }
 }
 

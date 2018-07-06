@@ -10,42 +10,134 @@
             <objects>
                 <viewController id="wAV-1z-91J" customClass="DetailViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Thk-iw-1wR">
-                        <rect key="frame" x="0.0" y="0.0" width="305" height="383"/>
+                        <rect key="frame" x="0.0" y="0.0" width="519" height="383"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kj8-mq-XwJ" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="343" width="305" height="40"/>
+                                <rect key="frame" x="0.0" y="343" width="519" height="40"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gne-9I-smk">
-                                        <rect key="frame" x="10" y="9" width="20" height="22"/>
+                                        <rect key="frame" x="10" y="7" width="25" height="27"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="rbu-dx-oJA"/>
-                                            <constraint firstAttribute="height" constant="20" id="x9s-7M-E6K"/>
+                                            <constraint firstAttribute="width" constant="25" id="rbu-dx-oJA"/>
+                                            <constraint firstAttribute="height" constant="25" id="x9s-7M-E6K"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzw-4w-A2B">
+                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="icon_rss" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzw-4w-A2B">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BdE-4E-Ofj">
+                                        <rect key="frame" x="34" y="7" width="25" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="MNl-s8-daO"/>
+                                            <constraint firstAttribute="width" constant="25" id="cuJ-8H-ELu"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="icon_safari" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xEY-v6-gMQ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="xI5-hG-T7h">
+                                        <rect key="frame" x="489" y="10" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ekQ-F3-abn"/>
+                                            <constraint firstAttribute="width" constant="20" id="iEa-3r-aqm"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon_star" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="AcR-DV-Bly">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="eO4-kZ-1mN" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="519" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="ZD8-81-A0e"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="eO4-kZ-1mN" secondAttribute="trailing" id="1pO-dH-EdF"/>
+                                    <constraint firstAttribute="trailing" secondItem="xI5-hG-T7h" secondAttribute="trailing" constant="10" id="93o-TU-ltg"/>
                                     <constraint firstItem="Gne-9I-smk" firstAttribute="centerY" secondItem="Kj8-mq-XwJ" secondAttribute="centerY" id="JUx-XD-zBP"/>
+                                    <constraint firstItem="xI5-hG-T7h" firstAttribute="centerY" secondItem="Kj8-mq-XwJ" secondAttribute="centerY" id="Je4-O6-cuj"/>
                                     <constraint firstItem="Gne-9I-smk" firstAttribute="leading" secondItem="Kj8-mq-XwJ" secondAttribute="leading" constant="10" id="Qxj-cy-URZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="eO4-kZ-1mN" secondAttribute="bottom" id="St6-jF-emn"/>
                                     <constraint firstAttribute="height" constant="40" id="eut-aQ-ZyK"/>
+                                    <constraint firstItem="BdE-4E-Ofj" firstAttribute="leading" secondItem="Gne-9I-smk" secondAttribute="trailing" constant="-1" id="hw9-p8-lzp"/>
+                                    <constraint firstItem="eO4-kZ-1mN" firstAttribute="leading" secondItem="Kj8-mq-XwJ" secondAttribute="leading" id="qvp-FW-Lgb"/>
+                                    <constraint firstItem="BdE-4E-Ofj" firstAttribute="centerY" secondItem="Kj8-mq-XwJ" secondAttribute="centerY" id="w2y-ZV-xbS"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                        <color key="value" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.97647058823529409" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="F40-64-sRg" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="519" height="343"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="wxu-Qz-8FJ" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="30" width="439" height="283"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0lT-en-U5Z">
+                                                <rect key="frame" x="-2" y="247" width="443" height="36"/>
+                                                <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" title="스포티파이가 하드웨어 개발에 나선 3가지 이유" id="IWI-Nd-7A1">
+                                                    <font key="font" size="24" name="AppleSDGothicNeo-Bold"/>
+                                                    <color key="textColor" red="0.23529411764705882" green="0.22352941176470589" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A6o-5n-g0b">
+                                                <rect key="frame" x="-2" y="222" width="108" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2018.07.06 금요일" id="o1x-DJ-vtV">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="A6o-5n-g0b" firstAttribute="top" secondItem="0lT-en-U5Z" secondAttribute="bottom" constant="8" id="9f1-cx-fHK"/>
+                                            <constraint firstItem="0lT-en-U5Z" firstAttribute="leading" secondItem="wxu-Qz-8FJ" secondAttribute="leading" id="CsG-bS-G2n"/>
+                                            <constraint firstItem="A6o-5n-g0b" firstAttribute="leading" secondItem="wxu-Qz-8FJ" secondAttribute="leading" id="ccH-2I-v5y"/>
+                                            <constraint firstItem="0lT-en-U5Z" firstAttribute="top" secondItem="wxu-Qz-8FJ" secondAttribute="top" id="waQ-gK-Q5Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="0lT-en-U5Z" secondAttribute="trailing" id="zIs-lS-zTu"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wxu-Qz-8FJ" firstAttribute="leading" secondItem="F40-64-sRg" secondAttribute="leading" constant="40" id="1Y5-Re-GKb"/>
+                                    <constraint firstAttribute="bottom" secondItem="wxu-Qz-8FJ" secondAttribute="bottom" constant="30" id="fyA-Zc-tqa"/>
+                                    <constraint firstAttribute="trailing" secondItem="wxu-Qz-8FJ" secondAttribute="trailing" constant="40" id="pn3-6W-GbT"/>
+                                    <constraint firstItem="wxu-Qz-8FJ" firstAttribute="top" secondItem="F40-64-sRg" secondAttribute="top" constant="30" id="vtk-PZ-LSz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="F40-64-sRg" secondAttribute="bottom" id="0sU-2b-BEM"/>
+                            <constraint firstItem="F40-64-sRg" firstAttribute="leading" secondItem="Thk-iw-1wR" secondAttribute="leading" id="80s-NB-KLq"/>
+                            <constraint firstAttribute="trailing" secondItem="F40-64-sRg" secondAttribute="trailing" id="AO8-2c-yj0"/>
+                            <constraint firstItem="F40-64-sRg" firstAttribute="top" secondItem="Kj8-mq-XwJ" secondAttribute="bottom" id="LJP-0s-2cQ"/>
                             <constraint firstAttribute="trailing" secondItem="Kj8-mq-XwJ" secondAttribute="trailing" id="eFk-FR-s6L"/>
                             <constraint firstItem="Kj8-mq-XwJ" firstAttribute="top" secondItem="Thk-iw-1wR" secondAttribute="top" id="jp1-wi-U6d"/>
                             <constraint firstItem="Kj8-mq-XwJ" firstAttribute="leading" secondItem="Thk-iw-1wR" secondAttribute="leading" id="xeH-5B-Q3C"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="rssBtn" destination="Gne-9I-smk" id="bA4-HC-dvZ"/>
+                        <outlet property="safariBtn" destination="BdE-4E-Ofj" id="kEs-92-hSR"/>
+                    </connections>
                 </viewController>
                 <customObject id="DJD-Kq-5ax" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,6 +145,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="icon_rss" width="36" height="36"/>
+        <image name="icon_safari" width="36" height="36"/>
+        <image name="icon_star" width="37.5" height="37.5"/>
     </resources>
 </document>

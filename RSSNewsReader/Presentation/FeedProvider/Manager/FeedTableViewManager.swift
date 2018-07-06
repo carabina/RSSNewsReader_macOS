@@ -16,9 +16,11 @@ class FeedTableViewManager: NSObject {
         super.init()
         
         self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.selectionHighlightStyle = .none
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = NSColor.clear
+        tableView.selectionHighlightStyle = .none
     }
 }
 
@@ -36,11 +38,6 @@ extension FeedTableViewManager: NSTableViewDelegate {
         cell.feedTotalCnt.intValue = 5
         
         return cell
-    }
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let rowView = tableView.rowView(atRow: tableView.selectedRow, makeIfNecessary: false)
-        rowView?.isEmphasized = false
     }
 }
 

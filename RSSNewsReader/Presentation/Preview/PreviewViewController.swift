@@ -18,6 +18,7 @@ class PreviewViewController: NSViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.selectionHighlightStyle = .none
     }
 }
 

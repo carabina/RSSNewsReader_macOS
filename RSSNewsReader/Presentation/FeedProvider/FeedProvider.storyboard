@@ -14,26 +14,49 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="bLR-T2-5Fk" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="280" width="200" height="20"/>
+                                <rect key="frame" x="0.0" y="270" width="200" height="30"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="yWn-jp-T4z">
+                                        <rect key="frame" x="150" y="8" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="159-zi-QXv"/>
+                                            <constraint firstAttribute="width" constant="15" id="C8S-iV-Gim"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon_white_refresh" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="cKb-RU-d1p">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="D0z-N3-pLL">
+                                        <rect key="frame" x="175" y="8" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="q2q-52-v4b"/>
+                                            <constraint firstAttribute="height" constant="15" id="tc5-wi-Lrx"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon_white_add" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="A8v-tq-JQZ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Vta-1r-oO3"/>
+                                    <constraint firstAttribute="height" constant="30" id="Vta-1r-oO3"/>
+                                    <constraint firstItem="yWn-jp-T4z" firstAttribute="centerY" secondItem="bLR-T2-5Fk" secondAttribute="centerY" id="lxl-lQ-izf"/>
+                                    <constraint firstAttribute="trailing" secondItem="D0z-N3-pLL" secondAttribute="trailing" constant="10" id="pIO-1q-1jN"/>
+                                    <constraint firstItem="D0z-N3-pLL" firstAttribute="leading" secondItem="yWn-jp-T4z" secondAttribute="trailing" constant="10" id="sJx-rn-5xp"/>
+                                    <constraint firstItem="D0z-N3-pLL" firstAttribute="centerY" secondItem="bLR-T2-5Fk" secondAttribute="centerY" id="xvM-vD-io4"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                        <color key="value" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </customView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="35" horizontalPageScroll="10" verticalLineScroll="35" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvv-lL-5Bl" userLabel="Fixed Table View">
-                                <rect key="frame" x="0.0" y="210" width="200" height="70"/>
-                                <clipView key="contentView" id="KiX-ac-Hu0">
+                                <rect key="frame" x="0.0" y="200" width="200" height="70"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="KiX-ac-Hu0">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="35" viewBased="YES" id="oxr-EM-iyE">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.14509803921568629" green="0.14509803921568629" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="200" minWidth="10" maxWidth="3.4028234663852886e+38" id="JMm-Zy-JrG">
@@ -61,16 +84,16 @@
                                                                     <rect key="frame" x="22" y="9" width="89" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="jir-wK-hda">
                                                                         <font key="font" size="13" name="AppleSDGothicNeo-SemiBold"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cpf-wa-d43">
                                                                     <rect key="frame" x="185" y="8" width="12" height="19"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="Kg9-9C-BkZ">
                                                                         <font key="font" size="13" name="HelveticaNeue"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" red="0.71372549019607845" green="0.71764705882352942" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
@@ -94,6 +117,7 @@
                                             </tableColumns>
                                         </tableView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="PfU-qH-WaQ"/>
@@ -108,15 +132,15 @@
                                 </scroller>
                             </scrollView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="35" horizontalPageScroll="10" verticalLineScroll="35" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvs-5k-fQQ" userLabel="Feed Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="180"/>
-                                <clipView key="contentView" id="OBc-R8-5U4">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="OBc-R8-5U4">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" viewBased="YES" id="6Ho-qu-qZr">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="180"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="35" viewBased="YES" id="6Ho-qu-qZr">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.14509803921568629" green="0.14509803921568629" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="200" minWidth="40" maxWidth="1000" id="Uvf-yX-VJ8">
@@ -144,7 +168,7 @@
                                                                     <rect key="frame" x="22" y="9" width="88" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zOX-tc-XV3">
                                                                         <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -152,7 +176,7 @@
                                                                     <rect key="frame" x="185" y="8" width="12" height="19"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="9fM-ta-iqK">
                                                                         <font key="font" size="13" name="HelveticaNeue"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" red="0.71372549019607845" green="0.71764705882352942" blue="0.73333333333333328" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -202,7 +226,10 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                <color key="value" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.14509803921568629" green="0.14509803921568629" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bgAlpha">
+                                <real key="value" value="0.69999999999999996"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -219,5 +246,7 @@
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="icon_white_add" width="37.5" height="37.5"/>
+        <image name="icon_white_refresh" width="37.5" height="37.5"/>
     </resources>
 </document>

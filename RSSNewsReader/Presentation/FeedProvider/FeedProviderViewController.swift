@@ -9,7 +9,6 @@
 import Cocoa
 
 class FeedProviderViewController: NSViewController {
-
     @IBOutlet weak var topbarView: NSView!
     @IBOutlet weak var fixedTableView: NSTableView!
     @IBOutlet weak var feedTableView: NSTableView!

@@ -9,5 +9,10 @@
 import Cocoa
 
 class DetailViewController: NSViewController {
-
+    @IBOutlet weak var rssBtn: NSButton!
+    @IBOutlet weak var safariBtn: NSButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Alamofire
 @testable import RSSNewsReader
 
 class RSSNewsReaderTests: XCTestCase {
@@ -21,9 +22,14 @@ class RSSNewsReaderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAddFeedProvider() {
+        // Async 테스트 케이스 작성은 아래 URL 참고해양
+        // http://seorenn.blogspot.com/2016/11/xcode-asynchronous-unittest.html
+        let testFeedURL = "http://techneedle.com/feed/"
+        
+        Alamofire.request(testFeedURL).response { response in
+            debugPrint(response)
+        }
     }
     
     func testPerformanceExample() {
