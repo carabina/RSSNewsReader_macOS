@@ -23,13 +23,24 @@ class RSSNewsReaderTests: XCTestCase {
     }
     
     func testAddFeedProvider() {
-        // Async 테스트 케이스 작성은 아래 URL 참고해양
-        // http://seorenn.blogspot.com/2016/11/xcode-asynchronous-unittest.html
-        let testFeedURL = "http://techneedle.com/feed/"
+        let expt = expectation(description: "testAddFeedProvider")
+        let testFeedURL = "http://techneedle.com/feed"
         
-        Alamofire.request(testFeedURL).response { response in
-            debugPrint(response)
-        }
+        var headers = HTTPHeaders()
+        headers["Accept"] = "application/rss+xml"
+        
+        Alamofire.request(testFeedURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                XCTAssertNil(response.error)
+                XCTAssertNotNil(response.data)
+                
+                RSSXmlParser.shared.parse(data: response.data!)
+                
+                expt.fulfill()
+            }
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testPerformanceExample() {
