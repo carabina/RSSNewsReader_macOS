@@ -7,70 +7,36 @@
 //
 
 import Cocoa
+import SWXMLHash
 
-class RSSXmlParser: XMLParser {
-    fileprivate var childOfChannel = false
-    fileprivate var childOfImage = false
-    fileprivate var childOfItem = false
+class RSSXmlParser: NSObject {
+    let shared = RSSXmlParser()
     
-    fileprivate lazy var provider = RSSProvider()
-    fileprivate lazy var articles = [RSSArticle]()
-    
-    typealias CompletionHandler = (_ provider: RSSProvider?, _ articles: [RSSArticle]?) -> ()
-    
-    var type: ParseType!
-    var completionHandler: CompletionHandler?
-    
-    enum ParseType {
-        case provider // Feed 제공자의 정보만 파싱함.
-        case article // 기사만 파싱함.
+    class func parseProvider(data: Data) -> RSSProvider {
+        let xml = SWXMLHash.parse(data)
+        let provider = RSSProvider()
+        
+        provider.name = xml["rss"]["channel"]["title"].element?.text
+        provider.introduce = xml["rss"]["channel"]["description"].element?.text
+        provider.imageURL = xml["rss"]["channel"]["image"]["url"].element?.text
+        
+        return provider
     }
     
-    // MARK: - Interface
-    func parse(type: ParseType, onCompletion: CompletionHandler?) {
-        self.type = type
-        self.completionHandler = onCompletion
-        self.delegate = self
+    class func parseArticles(data: Data) -> [RSSArticle] {
+        let xml = SWXMLHash.parse(data)
+        var articles = [RSSArticle]()
         
-        parse()
-    }
-}
-
-// MARK: - XMLParserDelegate
-extension RSSXmlParser: XMLParserDelegate {
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        childOfChannel = (elementName == "channel")
-        childOfImage = (elementName == "image")
-        childOfItem = (elementName == "item")
-        
-        if childOfChannel && elementName == "title" {
-            provider.name = elementName
-        } else if childOfImage && elementName == "url" {
-            provider.imageURL = elementName
-        } else if childOfItem {
-            if elementName == "title" {
-                articles.append(RSSArticle())
-                articles.last!.title = elementName
-            } else if elementName == "link" {
-                articles.last!.link = elementName
-            } else if elementName == "pubDate" {
-                articles.last!.pubDate = elementName
-            }
+        xml["rss"]["channel"]["item"].all.forEach { item in
+            let article = RSSArticle()
+            article.title = item["title"].element?.text
+            article.link = item["link"].element?.text
+            article.pubDate = item["pubDate"].element?.text
+            article.contents = item["description"].element?.text
+            
+            articles.append(article)
         }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        childOfChannel = (elementName == "channel")
-        childOfImage = (elementName == "image")
-        childOfItem = (elementName == "item")
         
-        if type == .provider && childOfItem {
-            abortParsing()
-            completionHandler?(provider, nil)
-        }
-    }
-    
-    func parserDidEndDocument(_ parser: XMLParser) {
-        completionHandler?(provider, articles)
+        return articles
     }
 }

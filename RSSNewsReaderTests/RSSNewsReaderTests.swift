@@ -8,6 +8,7 @@
 
 import XCTest
 import Alamofire
+import SWXMLHash
 @testable import RSSNewsReader
 
 class RSSNewsReaderTests: XCTestCase {
@@ -22,15 +23,19 @@ class RSSNewsReaderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testParsingRSS() {
-        let expt = expectation(description: "testAddFeedProvider")
+    // MARK: - XML Parsing Test
+    func testParsingProvider() {
+        let expt = expectation(description: "testParsingProvider")
         let url = "http://techneedle.com/feed"
         
         NetworkService.xml(url: url) { (data, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
-            let provider = RSSProvider(data: data!)
+            let provider = RSSXmlParser.parseProvider(data: data!)
+            
+            XCTAssertNotNil(provider.name)
+            XCTAssertNotNil(provider.introduce)
             
             expt.fulfill()
         }
@@ -38,6 +43,29 @@ class RSSNewsReaderTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    func testParsingArticles() {
+        let expt = expectation(description: "testParsingArticles")
+        let url = "http://techneedle.com/feed"
+        
+        NetworkService.xml(url: url) { (data, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(data)
+            
+            let articles = RSSXmlParser.parseArticles(data: data!)
+            articles.forEach { article in
+                XCTAssertNotNil(article.title)
+                XCTAssertNotNil(article.link)
+                XCTAssertNotNil(article.pubDate)
+                XCTAssertNotNil(article.contents)
+            }
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    // MARK: - Http Test
     func testAccessHttpImage() {
         let expt = expectation(description: "testAccessHttpImage")
         let url = "https://i2.wp.com/techneedle.com/wp-content/uploads/2018/03/cropped-tN-favicon.png?fit=32%2C32"

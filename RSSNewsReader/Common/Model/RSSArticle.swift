@@ -15,9 +15,10 @@ class RSSArticle: NSObject {
     var image: NSImage?
     var contents: String!
     
-    fileprivate var imageURL: String! {
+    fileprivate var imageURL: String? {
         didSet {
-            NetworkService.image(url: imageURL) { (image, error) in
+            guard let _imageURL = imageURL else { return }
+            NetworkService.image(url: _imageURL) { (image, error) in
                 if error == nil {
                     self.image = image
                 }

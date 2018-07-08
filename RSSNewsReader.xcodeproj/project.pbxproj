@@ -29,7 +29,7 @@
 		63C17B9620F109B20062566D /* RSSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17B9520F109B20062566D /* RSSProvider.swift */; };
 		63C17B9820F1DA560062566D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17B9720F1DA560062566D /* NetworkService.swift */; };
 		63C17BA320F201090062566D /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17BA220F201090062566D /* RSSArticle.swift */; };
-		63C17BA520F208470062566D /* RSSXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17BA420F208470062566D /* RSSXmlParser.swift */; };
+		63C17BA720F23D820062566D /* RSSXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17BA620F23D820062566D /* RSSXmlParser.swift */; };
 		B1427E39DE1D39BF2FED4867 /* Pods_RSSNewsReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AC691DA758D32A610B698 /* Pods_RSSNewsReaderTests.framework */; };
 		BDF45A8B3C67E5071EC594FC /* Pods_RSSNewsReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE69D4E0B90C6E05E263D48 /* Pods_RSSNewsReader.framework */; };
 /* End PBXBuildFile section */
@@ -74,7 +74,7 @@
 		63C17B9520F109B20062566D /* RSSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSProvider.swift; sourceTree = "<group>"; };
 		63C17B9720F1DA560062566D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		63C17BA220F201090062566D /* RSSArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticle.swift; sourceTree = "<group>"; };
-		63C17BA420F208470062566D /* RSSXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSXmlParser.swift; sourceTree = "<group>"; };
+		63C17BA620F23D820062566D /* RSSXmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSXmlParser.swift; sourceTree = "<group>"; };
 		651AC691DA758D32A610B698 /* Pods_RSSNewsReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F86080275E2994CAE789A9F /* Pods-RSSNewsReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSNewsReaderTests/Pods-RSSNewsReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		72DB7C5AEE1ADD191F335869 /* Pods-RSSNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -261,8 +261,8 @@
 		63C17B9120F0FD3E0062566D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				63C17BA620F23D820062566D /* RSSXmlParser.swift */,
 				63C17B9720F1DA560062566D /* NetworkService.swift */,
-				63C17BA420F208470062566D /* RSSXmlParser.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -415,12 +415,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -468,7 +470,7 @@
 				6397571720EA00F100208382 /* FeedProviderViewController.swift in Sources */,
 				639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */,
 				63362D7020EE0933003DB5FD /* RSSView.swift in Sources */,
-				63C17BA520F208470062566D /* RSSXmlParser.swift in Sources */,
+				63C17BA720F23D820062566D /* RSSXmlParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

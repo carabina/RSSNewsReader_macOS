@@ -7,6 +7,7 @@ target 'RSSNewsReader' do
 
   # Pods for RSSNewsReader
   pod 'Moya', '~> 11.0'
+  pod 'SWXMLHash', '~> 4.0.0'
 
   target 'RSSNewsReaderTests' do
     inherit! :search_paths

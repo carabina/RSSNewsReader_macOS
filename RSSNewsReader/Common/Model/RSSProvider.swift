@@ -10,11 +10,13 @@ import Cocoa
 
 class RSSProvider: NSObject {
     var name: String!
+    var introduce: String!
     var image: NSImage?
     
-    var imageURL: String! {
+    var imageURL: String? {
         didSet {
-            NetworkService.image(url: imageURL) { [weak self] (image, error) in
+            guard let _imageURL = imageURL else { return }
+            NetworkService.image(url: _imageURL) { [weak self] (image, error) in
                 if (error == nil) {
                     self?.image = image
                 }
