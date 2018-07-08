@@ -12,12 +12,16 @@ class RSSArticle: NSObject {
     var title: String!
     var link: String!
     var pubDate: String! // TODO: NSDate로 바꿔야 함!!
-    var image: NSImage!
+    var image: NSImage?
     var contents: String!
     
     fileprivate var imageURL: String! {
         didSet {
-            
+            NetworkService.image(url: imageURL) { (image, error) in
+                if error == nil {
+                    self.image = image
+                }
+            }
         }
     }
 }

@@ -14,7 +14,6 @@ class RSSProvider: NSObject {
     
     var imageURL: String! {
         didSet {
-            parser?.abortParsing()
             NetworkService.image(url: imageURL) { [weak self] (image, error) in
                 if (error == nil) {
                     self?.image = image
