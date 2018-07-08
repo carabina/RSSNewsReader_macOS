@@ -10,9 +10,18 @@ import Cocoa
 
 class RSSXmlParser: NSObject {
     
+    enum ParseType {
+        case provider // RSS Provider 정보만 파싱함.
+        case article // RSS Article 만 파싱함.
+    }
+    
     public static let shared = RSSXmlParser()
+    
+    fileprivate var type: ParseType!
 
-    func parse(data: Data) {
+    func parse(type: ParseType, data: Data) {
+        self.type = type
+        
         let xmlParser = XMLParser(data: data)
         xmlParser.delegate = self
         xmlParser.parse()

@@ -24,21 +24,28 @@ class RSSNewsReaderTests: XCTestCase {
     
     func testAddFeedProvider() {
         let expt = expectation(description: "testAddFeedProvider")
-        let testFeedURL = "http://techneedle.com/feed"
+        let url = "http://techneedle.com/feed"
         
-        var headers = HTTPHeaders()
-        headers["Accept"] = "application/rss+xml"
+        NetworkService.xml(url: url) { (data, error) in
+            XCTAssertNotNil(data)
+            XCTAssertNil(error)
+            
+            expt.fulfill()
+        }
         
-        Alamofire.request(testFeedURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
-            .validate()
-            .response { response in
-                XCTAssertNil(response.error)
-                XCTAssertNotNil(response.data)
-                
-                RSSXmlParser.shared.parse(data: response.data!)
-                
-                expt.fulfill()
-            }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testAccessHttpImage() {
+        let expt = expectation(description: "testAccessHttpImage")
+        let url = "https://i2.wp.com/techneedle.com/wp-content/uploads/2018/03/cropped-tN-favicon.png?fit=32%2C32"
+        
+        NetworkService.image(url: url) { (image, error) in
+            XCTAssertNotNil(image)
+            XCTAssertNil(error)
+            
+            expt.fulfill()
+        }
         
         waitForExpectations(timeout: 5, handler: nil)
     }
