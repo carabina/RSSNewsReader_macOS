@@ -30,6 +30,8 @@ class RSSNewsReaderTests: XCTestCase {
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
+            let provider = RSSProvider(data: data!)
+            
             expt.fulfill()
         }
         
