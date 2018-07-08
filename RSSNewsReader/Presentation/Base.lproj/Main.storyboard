@@ -701,10 +701,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Main Split View Controller-->
         <scene sceneID="XUc-w8-OEC">
             <objects>
-                <splitViewController id="ZFC-a2-Ojz" sceneMemberID="viewController">
+                <splitViewController id="ZFC-a2-Ojz" customClass="MainSplitViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="FQu-y9-rM6"/>
                         <splitViewItem id="PKR-Y2-034"/>

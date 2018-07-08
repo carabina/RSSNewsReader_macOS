@@ -9,6 +9,9 @@
 import Cocoa
 
 class FeedProviderViewController: NSViewController {
+    @IBOutlet weak var plusBtn: NSButton!
+    @IBOutlet weak var refreshBtn: NSButton!
+    
     @IBOutlet weak var topbarView: NSView!
     @IBOutlet weak var fixedTableView: NSTableView!
     @IBOutlet weak var feedTableView: NSTableView!
@@ -29,6 +32,14 @@ class FeedProviderViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
+    }
+    
+    // MARK: - Button Action
+    
+    @IBAction func didPlusBtnTapped(_ sender: Any) {
         
+    }
+    
+    @IBAction func didRefreshBtnTapped(_ sender: Any) {
     }
 }

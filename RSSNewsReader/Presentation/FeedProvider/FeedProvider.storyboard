@@ -26,6 +26,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="didRefreshBtnTapped:" target="Fta-FQ-k67" id="hb7-gw-hTV"/>
+                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="D0z-N3-pLL">
                                         <rect key="frame" x="175" y="8" width="15" height="15"/>
@@ -37,6 +40,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="didPlusBtnTapped:" target="Fta-FQ-k67" id="1Vf-aj-oD6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -236,6 +242,8 @@
                     <connections>
                         <outlet property="feedTableView" destination="6Ho-qu-qZr" id="tJb-sO-ij9"/>
                         <outlet property="fixedTableView" destination="oxr-EM-iyE" id="N90-cW-McU"/>
+                        <outlet property="plusBtn" destination="D0z-N3-pLL" id="bIp-MO-O3W"/>
+                        <outlet property="refreshBtn" destination="yWn-jp-T4z" id="sZ5-wY-bOQ"/>
                         <outlet property="topbarView" destination="bLR-T2-5Fk" id="gQY-Kp-ASB"/>
                     </connections>
                 </viewController>
