@@ -24,26 +24,4 @@ class RSSProvider: NSObject {
             }
         }
     }
-    
-    init(data: Data) {
-        super.init()
-        
-        parser = XMLParser(data: data)
-        parser?.delegate = self
-        parser?.parse()
-    }
-}
-
-extension RSSProvider: XMLParserDelegate {
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        if elementName == "title" {
-            self.name = elementName
-        } else if elementName == "url" {
-            self.imageURL = elementName
-        }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        
-    }
 }

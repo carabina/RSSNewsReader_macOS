@@ -22,7 +22,7 @@ class RSSNewsReaderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAddFeedProvider() {
+    func testParsingRSS() {
         let expt = expectation(description: "testAddFeedProvider")
         let url = "http://techneedle.com/feed"
         
