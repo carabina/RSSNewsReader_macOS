@@ -11,7 +11,7 @@ import Cocoa
 class RSSArticle: NSObject {
     var title: String!
     var link: String!
-    var pubDate: Date!
+    var pubDate: String! // TODO: NSDate로 바꿔야 함!!
     var image: NSImage!
     var contents: String!
     

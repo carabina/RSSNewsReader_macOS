@@ -12,9 +12,7 @@ class RSSProvider: NSObject {
     var name: String!
     var image: NSImage?
     
-    var parser: XMLParser?
-    
-    fileprivate var imageURL: String! {
+    var imageURL: String! {
         didSet {
             parser?.abortParsing()
             NetworkService.image(url: imageURL) { [weak self] (image, error) in
