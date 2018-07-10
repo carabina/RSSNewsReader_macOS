@@ -16,3 +16,9 @@ class FeedProviderAddViewController: NSViewController {
     }
     
 }
+
+extension FeedProviderAddViewController: ViewControllerInterface {
+    class func instance() -> Self {
+        return instance(storyboardName: "FeedProviderAdd", identifier: "\(FeedProviderAddViewController.self)")
+    }
+}

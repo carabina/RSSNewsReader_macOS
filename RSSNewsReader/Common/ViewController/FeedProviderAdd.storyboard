@@ -8,7 +8,7 @@
         <!--Feed Provider Add View Controller-->
         <scene sceneID="zCO-pY-R3c">
             <objects>
-                <viewController id="lgx-zs-MEs" customClass="FeedProviderAddViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedProviderAddViewController" id="lgx-zs-MEs" customClass="FeedProviderAddViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" id="p40-Sq-qP3">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="130"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

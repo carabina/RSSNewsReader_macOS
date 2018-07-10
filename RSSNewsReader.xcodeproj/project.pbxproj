@@ -12,7 +12,7 @@
 		632520E320ECC46200E621DE /* FeedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E220ECC46200E621DE /* FeedTableViewManager.swift */; };
 		632520E620ECC47900E621DE /* FixedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E520ECC47900E621DE /* FixedTableViewManager.swift */; };
 		63362D7020EE0933003DB5FD /* RSSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63362D6F20EE0933003DB5FD /* RSSView.swift */; };
-		6363D26320F4CD81008D6FFD /* FeedProviderAddViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6363D26220F4CD81008D6FFD /* FeedProviderAddViewController.storyboard */; };
+		6363D26320F4CD81008D6FFD /* FeedProviderAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */; };
 		6363D26820F4CDDE008D6FFD /* FeedProviderAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */; };
 		6363D26B20F4CE7A008D6FFD /* ViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363D26A20F4CE7A008D6FFD /* ViewControllerInterface.swift */; };
 		636A11D120EA20BA008164A1 /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A11D020EA20BA008164A1 /* NSColorExtension.swift */; };
@@ -56,7 +56,7 @@
 		632520E220ECC46200E621DE /* FeedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewManager.swift; sourceTree = "<group>"; };
 		632520E520ECC47900E621DE /* FixedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedTableViewManager.swift; sourceTree = "<group>"; };
 		63362D6F20EE0933003DB5FD /* RSSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSView.swift; sourceTree = "<group>"; };
-		6363D26220F4CD81008D6FFD /* FeedProviderAddViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedProviderAddViewController.storyboard; sourceTree = "<group>"; };
+		6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedProviderAdd.storyboard; sourceTree = "<group>"; };
 		6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderAddViewController.swift; sourceTree = "<group>"; };
 		6363D26A20F4CE7A008D6FFD /* ViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInterface.swift; sourceTree = "<group>"; };
 		636A11D020EA20BA008164A1 /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		6363D26120F4CD5B008D6FFD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6363D26220F4CD81008D6FFD /* FeedProviderAddViewController.storyboard */,
+				6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */,
 				6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */,
 			);
 			path = ViewController;
@@ -390,7 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				639756F820E9CBBE00208382 /* Assets.xcassets in Resources */,
-				6363D26320F4CD81008D6FFD /* FeedProviderAddViewController.storyboard in Resources */,
+				6363D26320F4CD81008D6FFD /* FeedProviderAdd.storyboard in Resources */,
 				6397571520E9F54700208382 /* FeedProvider.storyboard in Resources */,
 				639756FB20E9CBBF00208382 /* Main.storyboard in Resources */,
 				6377135420EE461F00B08D3F /* Detail.storyboard in Resources */,

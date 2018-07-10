@@ -17,9 +17,14 @@ extension ViewControllerInterface where Self: NSViewController {
         fatalError("You must override and implement this method")
     }
     
-    // 어떻게 할지 생각해보자...
-//    static func instance(storyboadName: String, viewController: NSViewController) -> Self {
-//        let storyboard = NSStoryboard(name: NSStoryboard.Name(storyboadName), bundle: nil)
-//
-//    }
+    static func instance(storyboardName: String, identifier: String) -> Self {
+        let storyboard = NSStoryboard(name: NSStoryboard.Name(storyboardName), bundle: nil)
+        let vc = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(identifier))
+        
+        guard let viewController = vc as? Self else {
+            fatalError("Check your storyboad name and identifier. that is not matched to \(self)")
+        }
+        
+        return viewController
+    }
 }
