@@ -13,7 +13,6 @@ class FeedProviderAddViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
     }
     
     @IBAction func didAddBtnTapped(_ sender: Any) {
@@ -21,7 +20,7 @@ class FeedProviderAddViewController: NSViewController {
     }
     
     @IBAction func didCancelBtnTapped(_ sender: Any) {
-        dismiss(self)
+        dismissViewController(self)
     }
 }
 
