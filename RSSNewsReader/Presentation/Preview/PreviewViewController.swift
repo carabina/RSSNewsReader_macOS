@@ -22,12 +22,14 @@ class PreviewViewController: NSViewController {
     }
 }
 
+// MARK: - NSTableViewDataSource
 extension PreviewViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return 5
     }
 }
 
+// MARK: - NSTableViewDelegate
 extension PreviewViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "\(PreviewTblCellView.self)"), owner: self)

@@ -16,11 +16,16 @@ extension ViewInterface where Self: NSView {
     static func initFromNib() -> Self {
         fatalError("You must override and implement this method")
     }
-}
-
-extension ViewInterface {
-//    static func initFromNib(_ nibName: String) -> Self {
-//        let view = Bundle.main.loadNibNamed(<#T##nibName: NSNib.Name##NSNib.Name#>, owner: <#T##Any?#>, topLevelObjects: <#T##AutoreleasingUnsafeMutablePointer<NSArray?>?#>)
-//        
-//    }
+    
+    static func initFromNib(nibName: String) -> Self {
+        var topLevelObjects: NSArray?
+        
+        if Bundle.main.loadNibNamed(NSNib.Name(nibName), owner: self, topLevelObjects: &topLevelObjects) {
+            if let view = topLevelObjects?.firstObject as? Self {
+                return view
+            }
+        }
+        
+        fatalError("Can't find \(Self.self) from \(nibName).xib")
+    }
 }

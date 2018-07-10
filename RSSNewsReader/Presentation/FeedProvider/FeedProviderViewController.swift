@@ -37,7 +37,10 @@ class FeedProviderViewController: NSViewController {
     // MARK: - Button Action
     
     @IBAction func didPlusBtnTapped(_ sender: Any) {
-        
+        // parent 직접 접근해서 add view를 띄워주쟝 헤헤
+        if let parent = parent as? MainSplitViewController {
+            parent.showAddProviderView()
+        }
     }
     
     @IBAction func didRefreshBtnTapped(_ sender: Any) {

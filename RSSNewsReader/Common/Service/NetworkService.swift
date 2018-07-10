@@ -40,12 +40,7 @@ class NetworkService: NSObject {
         Alamofire.request(url)
             .validate()
             .response { response in
-                guard response.error == nil else {
-                    onCompletion(nil, response.error)
-                    return
-                }
-                
-                onCompletion(response.data, nil)
+                onCompletion(response.data, response.error)
             }
     }
 }
