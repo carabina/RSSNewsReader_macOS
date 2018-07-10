@@ -9,7 +9,7 @@
         <scene sceneID="zCO-pY-R3c">
             <objects>
                 <viewController storyboardIdentifier="FeedProviderAddViewController" id="lgx-zs-MEs" customClass="FeedProviderAddViewController" customModule="RSSNewsReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" id="p40-Sq-qP3">
+                    <customView key="view" id="p40-Sq-qP3" customClass="RSSView" customModule="RSSNewsReader" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="130"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -35,6 +35,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="didAddBtnTapped:" target="lgx-zs-MEs" id="hcW-hH-723"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-Gv-H5W">
                                 <rect key="frame" x="162" y="13" width="63" height="32"/>
@@ -42,6 +45,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="didCancelBtnTapped:" target="lgx-zs-MEs" id="Qlp-mP-c8t"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -56,10 +62,18 @@
                             <constraint firstAttribute="bottom" secondItem="ypD-Gv-H5W" secondAttribute="bottom" constant="20" id="sV0-tT-I0l"/>
                             <constraint firstItem="4zm-AT-qsb" firstAttribute="top" secondItem="p40-Sq-qP3" secondAttribute="top" constant="10" id="sd6-3k-JIg"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="textField" destination="XME-1p-Zxa" id="kE0-Bf-R0c"/>
                         </connections>
                     </customView>
+                    <connections>
+                        <outlet property="textField" destination="XME-1p-Zxa" id="5fO-pY-Rlt"/>
+                    </connections>
                 </viewController>
                 <customObject id="pFc-Kc-eCT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

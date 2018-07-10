@@ -24,17 +24,7 @@ class MainSplitViewController: NSSplitViewController {
 
     // MARK: - Interface
     func showAddProviderView() {
-        let view = FeedProviderAddView.initFromNib()
-        view.frame.origin.x = 100
-        view.frame.origin.y = 0
-        
-        self.view.addSubview(view)
-    }
-}
-
-// MARK: - FeedProviderAddViewDelegate
-extension MainSplitViewController: FeedProviderAddViewDelegate {
-    func didCancelBtnTapped() {
-        
+        let vc = FeedProviderAddViewController.instance()
+        presentViewControllerAsSheet(vc)
     }
 }

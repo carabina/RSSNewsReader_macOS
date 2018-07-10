@@ -9,12 +9,20 @@
 import Cocoa
 
 class FeedProviderAddViewController: NSViewController {
-
+    @IBOutlet weak var textField: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    @IBAction func didAddBtnTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func didCancelBtnTapped(_ sender: Any) {
+        dismiss(self)
+    }
 }
 
 extension FeedProviderAddViewController: ViewControllerInterface {
