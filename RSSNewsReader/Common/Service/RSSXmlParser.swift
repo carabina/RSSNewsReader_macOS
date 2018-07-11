@@ -31,7 +31,8 @@ class RSSXmlParser: NSObject {
             let article = RSSArticle()
             article.title = item["title"].element?.text
             article.link = item["link"].element?.text
-            article.pubDate = item["pubDate"].element?.text
+            //article.pubDate = item["pubDate"].element?.text // TODO: String date를 date로 변환해야 함.
+            article.pubDate = Date()
             article.contents = item["description"].element?.text
             
             articles.append(article)
