@@ -82,12 +82,15 @@ class RSSNewsReaderTests: XCTestCase {
     
     // MARK: - Misc
     func testStringToDate() {
-        let stringDate = "Thu, 28 Jun 2018 15:30:27 +0000"
-        
+        let dateString = "Thu, 28 Jun 2018 15:30:27 +0000"
         let dateFormatter = DateFormatter()
-        let date = dateFormatter.date(from: stringDate)
-    
-        print(date)
+        
+        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"
+        dateFormatter.locale = Locale(identifier: "US_en")
+        
+        let date = dateFormatter.date(from: dateString)
+        
+        XCTAssertNotNil(date)
     }
     
 }
