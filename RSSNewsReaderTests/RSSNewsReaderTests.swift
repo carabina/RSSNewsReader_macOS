@@ -26,18 +26,25 @@ class RSSNewsReaderTests: XCTestCase {
     // MARK: - XML Parsing Test
     func testParsingProvider() {
         let expt = expectation(description: "testParsingProvider")
-        let url = "http://techneedle.com/feed"
         
-        NetworkService.xml(url: url) { (data, error) in
+        let rssURL = "http://techneedle.com/feed"
+        let normalURL = "http://techneedle.com"
+                
+        NetworkService.shared.xml(url: rssURL) { (data, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
-            let provider = RSSXmlParser.parseProvider(data: data!)
+            let provider = RSSXmlParser.shared.parseProvider(data: data!)
             
             XCTAssertNotNil(provider.name)
             XCTAssertNotNil(provider.introduce)
             
-            expt.fulfill()
+            NetworkService.shared.xml(url: normalURL) { (data, error) in
+                XCTAssertNotNil(error)
+                XCTAssertNil(data)
+                
+                expt.fulfill()
+            }
         }
         
         waitForExpectations(timeout: 5, handler: nil)
@@ -45,13 +52,15 @@ class RSSNewsReaderTests: XCTestCase {
     
     func testParsingArticles() {
         let expt = expectation(description: "testParsingArticles")
-        let url = "http://techneedle.com/feed"
         
-        NetworkService.xml(url: url) { (data, error) in
+        let rssURL = "http://techneedle.com/feed"
+        let normalURL = "http://techneedle.com"
+        
+        NetworkService.shared.xml(url: rssURL) { (data, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             
-            let articles = RSSXmlParser.parseArticles(data: data!)
+            let articles = RSSXmlParser.shared.parseArticles(data: data!)
             articles.forEach { article in
                 XCTAssertNotNil(article.title)
                 XCTAssertNotNil(article.link)
@@ -59,7 +68,12 @@ class RSSNewsReaderTests: XCTestCase {
                 XCTAssertNotNil(article.contents)
             }
             
-            expt.fulfill()
+            NetworkService.shared.xml(url: normalURL, onCompletion: { (data, error) in
+                XCTAssertNil(error)
+                XCTAssertNotNil(data)
+                
+                expt.fulfill()
+            })
         }
         
         waitForExpectations(timeout: 5, handler: nil)
@@ -70,7 +84,7 @@ class RSSNewsReaderTests: XCTestCase {
         let expt = expectation(description: "testAccessHttpImage")
         let url = "https://i2.wp.com/techneedle.com/wp-content/uploads/2018/03/cropped-tN-favicon.png?fit=32%2C32"
         
-        NetworkService.image(url: url) { (image, error) in
+        NetworkService.shared.image(url: url) { (image, error) in
             XCTAssertNotNil(image)
             XCTAssertNil(error)
             

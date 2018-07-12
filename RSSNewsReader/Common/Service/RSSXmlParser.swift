@@ -10,14 +10,14 @@ import Cocoa
 import SWXMLHash
 
 class RSSXmlParser: NSObject {
-    let shared = RSSXmlParser()
+    static let shared = RSSXmlParser()
 }
 
 // MARK: - Interface
 extension RSSXmlParser {
     func parseProvider(data: Data) -> RSSProvider {
         let xml = SWXMLHash.parse(data)
-        let provider = RSSProvider()
+        let provider = RSSProvider() // TODO: Core Data는 이렇게 다룰 수 없음.... 
         
         provider.name = xml["rss"]["channel"]["title"].element?.text
         provider.introduce = xml["rss"]["channel"]["description"].element?.text
@@ -37,7 +37,7 @@ extension RSSXmlParser {
             article.contents = item["description"].element?.text
             
             if let dateString = item["pubDate"].element?.text {
-                article.pubDate = dateStringToDate(dateString)
+                article.pubDate = stringToDate(dateString)
             }
             
             articles.append(article)
@@ -49,7 +49,7 @@ extension RSSXmlParser {
 
 // MARK: - Internal
 fileprivate extension RSSXmlParser {
-    func dateStringToDate(_ dateStr: String) -> Date? {
+    func stringToDate(_ dateStr: String) -> Date? {
         let formatter = DateFormatter()
         
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"

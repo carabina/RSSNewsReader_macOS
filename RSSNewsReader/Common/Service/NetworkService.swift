@@ -10,13 +10,13 @@ import Cocoa
 import Alamofire
 
 class NetworkService: NSObject {
-    let shared = NetworkService()
+    static let shared = NetworkService()
     
-    class func image(url: String, onCompletion: @escaping (_ image: NSImage?, _ error: Error?) -> ()) {
+    func image(url: String, onCompletion: @escaping (_ image: NSImage?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
         headers["Accept"] = "image"
         
-        Alamofire.request(url)
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
             .validate()
             .response { response in
                 guard response.error == nil else {
@@ -33,11 +33,11 @@ class NetworkService: NSObject {
             }
     }
     
-    class func xml(url: String, onCompletion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+    func xml(url: String, onCompletion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
         headers["Accept"] = "application/rss+xml"
         
-        Alamofire.request(url)
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
             .validate()
             .response { response in
                 onCompletion(response.data, response.error)
