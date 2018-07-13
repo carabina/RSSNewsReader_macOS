@@ -15,15 +15,19 @@ class RSSXmlParser: NSObject {
 
 // MARK: - Interface
 extension RSSXmlParser {
-    func parseProvider(data: Data) -> RSSProvider {
+    
+    func parseProvider(data: Data) -> RSSProvider? {
         let xml = SWXMLHash.parse(data)
-        let provider = RSSProvider() // TODO: Core Data는 이렇게 다룰 수 없음.... 
         
-        provider.name = xml["rss"]["channel"]["title"].element?.text
-        provider.introduce = xml["rss"]["channel"]["description"].element?.text
-        provider.imageURL = xml["rss"]["channel"]["image"]["url"].element?.text
+        if let provider = CoreDataService.shared.entity(name: "RSSProvider") {
+            provider.setValue(xml["rss"]["channel"]["title"].element?.text, forKey: "name")
+            provider.setValue(xml["rss"]["channel"]["description"].element?.text, forKey: "introduce")
+            provider.setValue(xml["rss"]["channel"]["image"]["url"].element?.text, forKey: "imageURL")
+            
+            return provider as? RSSProvider
+        }
         
-        return provider
+        return nil
     }
     
     func parseArticles(data: Data) -> [RSSArticle] {
@@ -31,16 +35,17 @@ extension RSSXmlParser {
         var articles = [RSSArticle]()
         
         xml["rss"]["channel"]["item"].all.forEach { item in
-            let article = RSSArticle()
-            article.title = item["title"].element?.text
-            article.link = item["link"].element?.text
-            article.contents = item["description"].element?.text
-            
-            if let dateString = item["pubDate"].element?.text {
-                article.pubDate = stringToDate(dateString)
+            if let article = CoreDataService.shared.entity(name: "RSSArticle") {
+                article.setValue(item["title"].element?.text, forKey: "title")
+                article.setValue(item["link"].element?.text, forKey: "link")
+                article.setValue(item["description"].element?.text, forKey: "contents")
+                
+                if let dateString = item["pubDate"].element?.text {
+                    article.setValue(stringToDate(dateString), forKey: "pubDate")
+                }
+                
+                articles.append(article as! RSSArticle)
             }
-            
-            articles.append(article)
         }
         
         return articles

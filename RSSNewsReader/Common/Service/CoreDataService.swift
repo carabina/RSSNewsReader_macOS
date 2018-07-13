@@ -23,6 +23,7 @@ class CoreDataService: NSObject {
 
 // MARK: - Interface
 extension CoreDataService {
+    
     func save(entityName: String, attr: String, value: Any) -> Bool {
         guard let managedContext = self.managedContext else {
             return false
@@ -69,6 +70,18 @@ extension CoreDataService {
             NSLog("Could not save CoreData: %@", error.localizedDescription)
             return false
         }
+    }
+    
+    func entity(name: String) -> NSManagedObject? {
+        guard let managedContext = self.managedContext else {
+            return nil
+        }
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: name, in: managedContext) else {
+            return nil
+        }
+        
+        return NSManagedObject(entity: entity, insertInto: managedContext)
     }
 }
 

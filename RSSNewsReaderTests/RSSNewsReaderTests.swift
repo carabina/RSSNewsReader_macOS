@@ -36,12 +36,13 @@ class RSSNewsReaderTests: XCTestCase {
             
             let provider = RSSXmlParser.shared.parseProvider(data: data!)
             
-            XCTAssertNotNil(provider.name)
-            XCTAssertNotNil(provider.introduce)
+            XCTAssertNotNil(provider)
+            XCTAssertNotNil(provider!.name)
+            XCTAssertNotNil(provider!.introduce)
             
             NetworkService.shared.xml(url: normalURL) { (data, error) in
+                XCTAssertNotNil(data)
                 XCTAssertNotNil(error)
-                XCTAssertNil(data)
                 
                 expt.fulfill()
             }
@@ -69,8 +70,8 @@ class RSSNewsReaderTests: XCTestCase {
             }
             
             NetworkService.shared.xml(url: normalURL, onCompletion: { (data, error) in
-                XCTAssertNil(error)
                 XCTAssertNotNil(data)
+                XCTAssertNotNil(error)
                 
                 expt.fulfill()
             })
