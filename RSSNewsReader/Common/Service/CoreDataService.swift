@@ -24,7 +24,7 @@ class CoreDataService: NSObject {
 // MARK: - Interface
 extension CoreDataService {
     
-    func save(provider: RSSProvider) -> Bool {
+    func save(_ provider: RSSProvider) -> Bool {
         guard let managedContext = self.managedContext else {
             return false
         }

@@ -10,6 +10,21 @@ import Cocoa
 
 class FeedProviderAddViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
+    @IBOutlet weak var confirmBtn: NSButton!
+    @IBOutlet weak var loadingIndicator: NSProgressIndicator!
+    
+    var isLoading = false {
+        didSet {
+            confirmBtn.isHidden = isLoading
+            loadingIndicator.isHidden = !isLoading
+            
+            if isLoading {
+                loadingIndicator.startAnimation(self)
+            } else {
+                loadingIndicator.stopAnimation(self)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +61,26 @@ fileprivate extension FeedProviderAddViewController {
             stringURL.insert(contentsOf: "http://", at: stringURL.startIndex)
         }
         
-        NetworkService.shared.xml(url: stringURL) { (data, error) in
+        isLoading = true
+        
+        NetworkService.shared.xml(url: stringURL) { [weak self] (data, error) in
             guard error == nil else {
                 // TODO: 에러 메시지를 띄워야함.. 별도의 에러 메시지 처리를 담당하는 클래스가 필요.
+                self?.isLoading = false
                 return
             }
             
             guard let _data = data else {
                 // TODO: 에러가 없는데 데이터가 nil일 경우가 있을까?
+                self?.isLoading = false
                 return
             }
             
             if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
+                let result = CoreDataService.shared.save(provider)
+                print(result)
                 
+                self?.isLoading = false
             }
         }
     }
