@@ -19,35 +19,45 @@ extension RSSXmlParser {
     func parseProvider(data: Data) -> RSSProvider? {
         let xml = SWXMLHash.parse(data)
         
-        if let provider = CoreDataService.shared.entity(name: "RSSProvider") {
-            provider.setValue(xml["rss"]["channel"]["title"].element?.text, forKey: "name")
-            provider.setValue(xml["rss"]["channel"]["description"].element?.text, forKey: "introduce")
-            provider.setValue(xml["rss"]["channel"]["image"]["url"].element?.text, forKey: "imageURL")
-            
-            return provider as? RSSProvider
+        guard let title = xml["rss"]["channel"]["title"].element?.text else {
+            return nil
         }
         
-        return nil
+        guard let introduce = xml["rss"]["channel"]["description"].element?.text else {
+            return nil
+        }
+        
+        let imageURL = xml["rss"]["channel"]["image"]["url"].element?.text
+        
+        return RSSProvider(title: title, introduce: introduce, imageURL: imageURL)
     }
     
     func parseArticles(data: Data) -> [RSSArticle] {
         let xml = SWXMLHash.parse(data)
         var articles = [RSSArticle]()
         
-        xml["rss"]["channel"]["item"].all.forEach { item in
-            if let article = CoreDataService.shared.entity(name: "RSSArticle") {
-                article.setValue(item["title"].element?.text, forKey: "title")
-                article.setValue(item["link"].element?.text, forKey: "link")
-                article.setValue(item["description"].element?.text, forKey: "contents")
-                
-                if let dateString = item["pubDate"].element?.text {
-                    article.setValue(stringToDate(dateString), forKey: "pubDate")
-                }
-                
-                articles.append(article as! RSSArticle)
+        for i in 0 ..< xml["rss"]["channel"]["item"].all.count {
+            let item = xml["rss"]["channel"]["item"][i]
+            
+            guard let title = item["title"].element?.text else {
+                continue
             }
+            
+            guard let link = item["link"].element?.text else {
+                continue
+            }
+            
+            guard let contents = item["description"].element?.text else {
+                continue
+            }
+            
+            guard let dateString = item["pubDate"].element?.text else {
+                continue
+            }
+            
+            articles.append(RSSArticle(title: title, link: link, contents: contents, pubDate: stringToDate(dateString)!))
         }
-        
+
         return articles
     }
 }

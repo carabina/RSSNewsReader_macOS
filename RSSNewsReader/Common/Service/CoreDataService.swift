@@ -16,7 +16,7 @@ class CoreDataService: NSObject {
         return NSApplication.shared.delegate as? AppDelegate
     }
     
-    var managedContext:NSManagedObjectContext? {
+    var managedContext: NSManagedObjectContext? {
         return appDelegate?.persistentContainer.viewContext
     }
 }
@@ -24,18 +24,20 @@ class CoreDataService: NSObject {
 // MARK: - Interface
 extension CoreDataService {
     
-    func save(entityName: String, attr: String, value: Any) -> Bool {
+    func save(provider: RSSProvider) -> Bool {
         guard let managedContext = self.managedContext else {
             return false
         }
         
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: RSSProvider.entity(), in: managedContext) else {
             return false
         }
         
-        let entityObj = NSManagedObject(entity: entity, insertInto: managedContext)
+        let coreProvider = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        entityObj.setValue(value, forKey: attr)
+        coreProvider.setValue(provider.title, forKey: "name")
+        coreProvider.setValue(provider.introduce, forKey: "introduce")
+        coreProvider.setValue(provider.imageURL, forKey: "imageURL")
         
         do {
             try managedContext.save()
@@ -44,44 +46,6 @@ extension CoreDataService {
             NSLog("Could not save CoreData: %@", error.localizedDescription)
             return false
         }
-    }
-    
-    func save(entityName: String, attrValueDict: [String: Any]) -> Bool {
-        guard let managedContext = self.managedContext else {
-            NSLog("NSManagedObjectContext is nil")
-            return false
-        }
-        
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext) else {
-            NSLog("Cannot access to entity. Check your entity name")
-            return false
-        }
-        
-        let entityObj = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        attrValueDict.forEach { tuple in
-            entityObj.setValue(tuple.value, forKey: tuple.key)
-        }
-        
-        do {
-            try managedContext.save()
-            return true
-        } catch let error as NSError {
-            NSLog("Could not save CoreData: %@", error.localizedDescription)
-            return false
-        }
-    }
-    
-    func entity(name: String) -> NSManagedObject? {
-        guard let managedContext = self.managedContext else {
-            return nil
-        }
-        
-        guard let entity = NSEntityDescription.entity(forEntityName: name, in: managedContext) else {
-            return nil
-        }
-        
-        return NSManagedObject(entity: entity, insertInto: managedContext)
     }
 }
 

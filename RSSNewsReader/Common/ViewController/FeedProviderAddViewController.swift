@@ -49,12 +49,15 @@ fileprivate extension FeedProviderAddViewController {
         NetworkService.shared.xml(url: stringURL) { (data, error) in
             guard error == nil else {
                 // TODO: 에러 메시지를 띄워야함.. 별도의 에러 메시지 처리를 담당하는 클래스가 필요.
-                print(error?.localizedDescription)
                 return
             }
             
-            if let _data = data {
-                RSSXmlParser.shared.parseProvider(data: _data)
+            guard let _data = data else {
+                // TODO: 에러가 없는데 데이터가 nil일 경우가 있을까?
+                return
+            }
+            
+            if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
                 
             }
         }
