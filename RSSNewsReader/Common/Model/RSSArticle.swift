@@ -8,11 +8,15 @@
 
 import Cocoa
 
-class RSSArticle: NSObject {
+class RSSArticle: NSObject, CoreDataInterface {
     var title: String
     var link: String
     var contents: String
     var pubDate: Date
+    
+    static func entity() -> String {
+        return "\(CoreArticle.self)"
+    }
     
     init(title: String, link: String, contents: String, pubDate: Date) {
         self.title = title
@@ -20,10 +24,11 @@ class RSSArticle: NSObject {
         self.contents = contents
         self.pubDate = pubDate
     }
-}
-
-extension RSSArticle: CoreDataInterface {
-    static func entity() -> String {
-        return "\(CoreArticle.self)"
+    
+    required init(managedObject: NSManagedObject) {
+        self.title = managedObject.value(forKey: "title") as! String
+        self.link = managedObject.value(forKey: "link") as! String
+        self.contents = managedObject.value(forKey: "contents") as! String
+        self.pubDate = managedObject.value(forKey: "pubDate") as! Date
     }
 }

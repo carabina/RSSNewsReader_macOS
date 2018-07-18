@@ -12,6 +12,7 @@ enum CoreDataError: Error {
     case managedContextNotExist
     case entityNameNotCorrect
     case saveFailed(reason: String)
+    case fetchFailed(reason: String)
 }
 
 extension CoreDataError: LocalizedError {
@@ -22,6 +23,8 @@ extension CoreDataError: LocalizedError {
         case .entityNameNotCorrect:
             return NSLocalizedString("entity name 이 올바르지 않습니다.", comment: "")
         case .saveFailed(reason: let reason):
+            return NSLocalizedString(reason, comment: "")
+        case .fetchFailed(reason: let reason):
             return NSLocalizedString(reason, comment: "")
         }
     }
@@ -64,6 +67,22 @@ extension CoreDataManager {
         } catch let error as NSError {
             // TODO: raw error가 사용자에게 그대로 노출됨.
             return CoreDataError.saveFailed(reason: error.localizedDescription)
+        }
+    }
+    
+    func fetch(entityName: String) -> (provider: RSSProvider?, error: Error?) {
+        guard let managedContext = self.managedContext else {
+            return (nil, CoreDataError.managedContextNotExist)
+        }
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        
+        do {
+            let fetchedObj = try managedContext.fetch(fetchRequest)
+            
+            
+        } catch let error as NSError {
+            return (nil, CoreDataError.fetchFailed(reason: error.localizedDescription))
         }
     }
 }
