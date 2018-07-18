@@ -77,8 +77,9 @@ fileprivate extension FeedProviderAddViewController {
             }
             
             if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
-                let result = CoreDataService.shared.save(provider)
-                print(result)
+                if let error = CoreDataService.shared.save(provider) {
+                    // TODO: error가 존재하면 알림창 띄워야 함!
+                }
                 
                 self?.isLoading = false
             }

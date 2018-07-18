@@ -146,7 +146,6 @@
 		63362D6B20EE05D3003DB5FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6363D26120F4CD5B008D6FFD /* ViewController */,
 				63C17B9420F102100062566D /* Model */,
 				63C17B9120F0FD3E0062566D /* Service */,
 				63362D6C20EE05DE003DB5FD /* View */,
@@ -164,13 +163,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		6363D26120F4CD5B008D6FFD /* ViewController */ = {
+		634C5C7020FB909E0027CFC3 /* AddProvider */ = {
 			isa = PBXGroup;
 			children = (
 				6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */,
 				6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */,
 			);
-			path = ViewController;
+			path = AddProvider;
 			sourceTree = "<group>";
 		};
 		636A11CE20EA2089008164A1 /* Presentation */ = {
@@ -248,6 +247,7 @@
 		6397571120E9F3A700208382 /* FeedProvider */ = {
 			isa = PBXGroup;
 			children = (
+				634C5C7020FB909E0027CFC3 /* AddProvider */,
 				632520E420ECC46700E621DE /* Manager */,
 				6397571820EA041700208382 /* Cell */,
 				6397571420E9F54700208382 /* FeedProvider.storyboard */,

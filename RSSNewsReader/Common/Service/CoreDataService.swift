@@ -8,6 +8,25 @@
 
 import Cocoa
 
+enum CoreDataError: Error {
+    case managedContextNotExist
+    case entityNameNotCorrect
+    case saveFailed(reason: String)
+}
+
+extension CoreDataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .managedContextNotExist:
+            return NSLocalizedString("managed context is nil", comment: "")
+        case .entityNameNotCorrect:
+            return NSLocalizedString("entity name is no correct", comment: "")
+        case .saveFailed(reason: let reason):
+            return NSLocalizedString(reason, comment: "")
+        }
+    }
+}
+
 class CoreDataService: NSObject {
     // Singleton
     static let shared = CoreDataService()
@@ -24,13 +43,13 @@ class CoreDataService: NSObject {
 // MARK: - Interface
 extension CoreDataService {
     
-    func save(_ provider: RSSProvider) -> Bool {
+    func save(_ provider: RSSProvider) -> Error? {
         guard let managedContext = self.managedContext else {
-            return false
+            return CoreDataError.managedContextNotExist
         }
         
         guard let entity = NSEntityDescription.entity(forEntityName: RSSProvider.entity(), in: managedContext) else {
-            return false
+            return CoreDataError.entityNameNotCorrect
         }
         
         let coreProvider = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -41,10 +60,9 @@ extension CoreDataService {
         
         do {
             try managedContext.save()
-            return true
+            return nil
         } catch let error as NSError {
-            NSLog("Could not save CoreData: %@", error.localizedDescription)
-            return false
+            return CoreDataError.saveFailed(reason: error.localizedDescription)
         }
     }
 }
