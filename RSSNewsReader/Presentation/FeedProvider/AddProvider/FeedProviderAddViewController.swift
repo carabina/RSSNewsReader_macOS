@@ -65,7 +65,7 @@ fileprivate extension FeedProviderAddViewController {
         
         NetworkService.shared.xml(url: stringURL) { [weak self] (data, error) in
             guard error == nil else {
-                // TODO: 에러 메시지를 띄워야함.. 별도의 에러 메시지 처리를 담당하는 클래스가 필요.
+                AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: "해당 웹사이트에서 제공하는 뉴스를 정상적으로 가져오지 못했습니다.")
                 self?.isLoading = false
                 return
             }
@@ -77,8 +77,8 @@ fileprivate extension FeedProviderAddViewController {
             }
             
             if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
-                if let error = CoreDataService.shared.save(provider) {
-                    // TODO: error가 존재하면 알림창 띄워야 함!
+                if let error = CoreDataManager.shared.save(provider) {
+                    AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: error.localizedDescription)
                 }
                 
                 self?.isLoading = false

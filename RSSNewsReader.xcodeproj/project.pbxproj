@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		631ABDB720F627AC00C30503 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631ABDB620F627AC00C30503 /* CoreDataService.swift */; };
+		631ABDB720F627AC00C30503 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631ABDB620F627AC00C30503 /* CoreDataManager.swift */; };
 		632520DF20EC879500E621DE /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520DE20EC879500E621DE /* ViewInterface.swift */; };
 		632520E120EC984300E621DE /* PreviewTblCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E020EC984300E621DE /* PreviewTblCellView.swift */; };
 		632520E320ECC46200E621DE /* FeedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E220ECC46200E621DE /* FeedTableViewManager.swift */; };
@@ -16,6 +16,7 @@
 		634C5C6B20F934B10027CFC3 /* RSSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5C6A20F934B10027CFC3 /* RSSProvider.swift */; };
 		634C5C6D20F935050027CFC3 /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5C6C20F935050027CFC3 /* RSSArticle.swift */; };
 		634C5C6F20FB0A420027CFC3 /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5C6E20FB0A420027CFC3 /* CoreDataInterface.swift */; };
+		635A3AB220FFA98E00350796 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635A3AB120FFA98E00350796 /* AlertManager.swift */; };
 		6363D26320F4CD81008D6FFD /* FeedProviderAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */; };
 		6363D26820F4CDDE008D6FFD /* FeedProviderAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */; };
 		6363D26B20F4CE7A008D6FFD /* ViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363D26A20F4CE7A008D6FFD /* ViewControllerInterface.swift */; };
@@ -53,7 +54,7 @@
 /* Begin PBXFileReference section */
 		1DE69D4E0B90C6E05E263D48 /* Pods_RSSNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		455D3FDA98BA901203F4185B /* Pods-RSSNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.release.xcconfig"; sourceTree = "<group>"; };
-		631ABDB620F627AC00C30503 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		631ABDB620F627AC00C30503 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		632520DE20EC879500E621DE /* ViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
 		632520E020EC984300E621DE /* PreviewTblCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewTblCellView.swift; path = RSSNewsReader/Presentation/Preview/PreviewTblCellView.swift; sourceTree = SOURCE_ROOT; };
 		632520E220ECC46200E621DE /* FeedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewManager.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		634C5C6A20F934B10027CFC3 /* RSSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSProvider.swift; sourceTree = "<group>"; };
 		634C5C6C20F935050027CFC3 /* RSSArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticle.swift; sourceTree = "<group>"; };
 		634C5C6E20FB0A420027CFC3 /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
+		635A3AB120FFA98E00350796 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		6363D26220F4CD81008D6FFD /* FeedProviderAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedProviderAdd.storyboard; sourceTree = "<group>"; };
 		6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderAddViewController.swift; sourceTree = "<group>"; };
 		6363D26A20F4CE7A008D6FFD /* ViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInterface.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		63362D6B20EE05D3003DB5FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				635A3AB020FFA97900350796 /* Manager */,
 				63C17B9420F102100062566D /* Model */,
 				63C17B9120F0FD3E0062566D /* Service */,
 				63362D6C20EE05DE003DB5FD /* View */,
@@ -170,6 +173,15 @@
 				6363D26620F4CDDE008D6FFD /* FeedProviderAddViewController.swift */,
 			);
 			path = AddProvider;
+			sourceTree = "<group>";
+		};
+		635A3AB020FFA97900350796 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				635A3AB120FFA98E00350796 /* AlertManager.swift */,
+				631ABDB620F627AC00C30503 /* CoreDataManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		636A11CE20EA2089008164A1 /* Presentation */ = {
@@ -288,7 +300,6 @@
 			children = (
 				63C17BA620F23D820062566D /* RSSXmlParser.swift */,
 				63C17B9720F1DA560062566D /* NetworkService.swift */,
-				631ABDB620F627AC00C30503 /* CoreDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -487,7 +498,8 @@
 				6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */,
 				6363D26820F4CDDE008D6FFD /* FeedProviderAddViewController.swift in Sources */,
 				632520E120EC984300E621DE /* PreviewTblCellView.swift in Sources */,
-				631ABDB720F627AC00C30503 /* CoreDataService.swift in Sources */,
+				635A3AB220FFA98E00350796 /* AlertManager.swift in Sources */,
+				631ABDB720F627AC00C30503 /* CoreDataManager.swift in Sources */,
 				636A11D320EB39D3008164A1 /* PreviewViewController.swift in Sources */,
 				6363D26B20F4CE7A008D6FFD /* ViewControllerInterface.swift in Sources */,
 				632520DF20EC879500E621DE /* ViewInterface.swift in Sources */,

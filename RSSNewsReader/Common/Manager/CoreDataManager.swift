@@ -18,18 +18,18 @@ extension CoreDataError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .managedContextNotExist:
-            return NSLocalizedString("managed context is nil", comment: "")
+            return NSLocalizedString("managed context 가 존재하지 않습니다.", comment: "")
         case .entityNameNotCorrect:
-            return NSLocalizedString("entity name is no correct", comment: "")
+            return NSLocalizedString("entity name 이 올바르지 않습니다.", comment: "")
         case .saveFailed(reason: let reason):
             return NSLocalizedString(reason, comment: "")
         }
     }
 }
 
-class CoreDataService: NSObject {
+class CoreDataManager: NSObject {
     // Singleton
-    static let shared = CoreDataService()
+    static let shared = CoreDataManager()
     
     var appDelegate: AppDelegate? {
         return NSApplication.shared.delegate as? AppDelegate
@@ -41,7 +41,7 @@ class CoreDataService: NSObject {
 }
 
 // MARK: - Interface
-extension CoreDataService {
+extension CoreDataManager {
     
     func save(_ provider: RSSProvider) -> Error? {
         guard let managedContext = self.managedContext else {
@@ -62,12 +62,13 @@ extension CoreDataService {
             try managedContext.save()
             return nil
         } catch let error as NSError {
+            // TODO: raw error가 사용자에게 그대로 노출됨.
             return CoreDataError.saveFailed(reason: error.localizedDescription)
         }
     }
 }
 
 // MARK: - Internal
-fileprivate extension CoreDataService {
+fileprivate extension CoreDataManager {
     
 }
