@@ -10,8 +10,6 @@
 		631ABDB720F627AC00C30503 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631ABDB620F627AC00C30503 /* CoreDataManager.swift */; };
 		632520DF20EC879500E621DE /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520DE20EC879500E621DE /* ViewInterface.swift */; };
 		632520E120EC984300E621DE /* PreviewTblCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E020EC984300E621DE /* PreviewTblCellView.swift */; };
-		632520E320ECC46200E621DE /* FeedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E220ECC46200E621DE /* FeedTableViewManager.swift */; };
-		632520E620ECC47900E621DE /* FixedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632520E520ECC47900E621DE /* FixedTableViewManager.swift */; };
 		63362D7020EE0933003DB5FD /* RSSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63362D6F20EE0933003DB5FD /* RSSView.swift */; };
 		634C5C6B20F934B10027CFC3 /* RSSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5C6A20F934B10027CFC3 /* RSSProvider.swift */; };
 		634C5C6D20F935050027CFC3 /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5C6C20F935050027CFC3 /* RSSArticle.swift */; };
@@ -57,8 +55,6 @@
 		631ABDB620F627AC00C30503 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		632520DE20EC879500E621DE /* ViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
 		632520E020EC984300E621DE /* PreviewTblCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewTblCellView.swift; path = RSSNewsReader/Presentation/Preview/PreviewTblCellView.swift; sourceTree = SOURCE_ROOT; };
-		632520E220ECC46200E621DE /* FeedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewManager.swift; sourceTree = "<group>"; };
-		632520E520ECC47900E621DE /* FixedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedTableViewManager.swift; sourceTree = "<group>"; };
 		63362D6F20EE0933003DB5FD /* RSSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSView.swift; sourceTree = "<group>"; };
 		634C5C6A20F934B10027CFC3 /* RSSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSProvider.swift; sourceTree = "<group>"; };
 		634C5C6C20F935050027CFC3 /* RSSArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticle.swift; sourceTree = "<group>"; };
@@ -134,15 +130,6 @@
 				634C5C6E20FB0A420027CFC3 /* CoreDataInterface.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		632520E420ECC46700E621DE /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				632520E220ECC46200E621DE /* FeedTableViewManager.swift */,
-				632520E520ECC47900E621DE /* FixedTableViewManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		63362D6B20EE05D3003DB5FD /* Common */ = {
@@ -260,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				634C5C7020FB909E0027CFC3 /* AddProvider */,
-				632520E420ECC46700E621DE /* Manager */,
 				6397571820EA041700208382 /* Cell */,
 				6397571420E9F54700208382 /* FeedProvider.storyboard */,
 				6397571620EA00F100208382 /* FeedProviderViewController.swift */,
@@ -494,7 +480,6 @@
 			files = (
 				6377135620EE463000B08D3F /* DetailViewController.swift in Sources */,
 				639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */,
-				632520E320ECC46200E621DE /* FeedTableViewManager.swift in Sources */,
 				6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */,
 				6363D26820F4CDDE008D6FFD /* FeedProviderAddViewController.swift in Sources */,
 				632520E120EC984300E621DE /* PreviewTblCellView.swift in Sources */,
@@ -509,7 +494,6 @@
 				63C17B9820F1DA560062566D /* NetworkService.swift in Sources */,
 				638B332820F4758A00E01B85 /* RSSNotification.swift in Sources */,
 				639756F320E9CBBD00208382 /* MainSplitViewController.swift in Sources */,
-				632520E620ECC47900E621DE /* FixedTableViewManager.swift in Sources */,
 				6397571720EA00F100208382 /* FeedProviderViewController.swift in Sources */,
 				634C5C6D20F935050027CFC3 /* RSSArticle.swift in Sources */,
 				639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */,
