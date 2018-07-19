@@ -46,7 +46,7 @@ class CoreDataManager: NSObject {
 // MARK: - Interface
 extension CoreDataManager {
     
-    func save(_ provider: RSSProvider) -> Error? {
+    func save(provider: RSSProvider) -> Error? { // TODO: 중복저장 안되도록 수정해야 함.
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
         }
@@ -70,17 +70,22 @@ extension CoreDataManager {
         }
     }
     
-    func fetch(entityName: String) -> (provider: RSSProvider?, error: Error?) {
+    func fetchProvider() -> (provider: [RSSProvider]?, error: Error?) {
         guard let managedContext = self.managedContext else {
             return (nil, CoreDataError.managedContextNotExist)
         }
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: RSSProvider.entity())
         
         do {
-            let fetchedObj = try managedContext.fetch(fetchRequest)
+            let objectArray = try managedContext.fetch(fetchRequest)
+            var providerArray = [RSSProvider]()
             
+            objectArray.forEach { managedObject in
+                providerArray.append(RSSProvider(managedObject: managedObject))
+            }
             
+            return (providerArray, nil)
         } catch let error as NSError {
             return (nil, CoreDataError.fetchFailed(reason: error.localizedDescription))
         }

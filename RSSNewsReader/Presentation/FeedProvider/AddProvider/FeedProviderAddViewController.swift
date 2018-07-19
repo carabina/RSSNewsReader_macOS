@@ -77,7 +77,7 @@ fileprivate extension FeedProviderAddViewController {
             }
             
             if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
-                if let error = CoreDataManager.shared.save(provider) {
+                if let error = CoreDataManager.shared.save(provider: provider) {
                     AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: error.localizedDescription)
                 }
                 
