@@ -39,6 +39,8 @@ class FeedProviderAddViewController: NSViewController {
     }
     
     @IBAction func didCancelBtnTapped(_ sender: Any) {
+        textField.delegate = nil
+        
         dismissViewController(self)
     }
 }

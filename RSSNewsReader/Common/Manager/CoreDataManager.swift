@@ -13,6 +13,7 @@ enum CoreDataError: Error {
     case entityNameNotCorrect
     case saveFailed(reason: String)
     case fetchFailed(reason: String)
+    case alreadyExist
 }
 
 extension CoreDataError: LocalizedError {
@@ -26,6 +27,8 @@ extension CoreDataError: LocalizedError {
             return NSLocalizedString(reason, comment: "")
         case .fetchFailed(reason: let reason):
             return NSLocalizedString(reason, comment: "")
+        case .alreadyExist:
+            return NSLocalizedString("이미 추가된 웹사이트입니다.", comment: "")
         }
     }
 }
@@ -53,6 +56,13 @@ extension CoreDataManager {
         
         guard let entity = NSEntityDescription.entity(forEntityName: RSSProvider.entity(), in: managedContext) else {
             return CoreDataError.entityNameNotCorrect
+        }
+        
+        // 중복 데이터가 저장되었는지 확인
+        if let savedProviders = fetchProvider().provider {
+            if !(savedProviders.filter { $0.title == provider.title }.isEmpty) {
+                return CoreDataError.alreadyExist
+            }
         }
         
         let coreProvider = NSManagedObject(entity: entity, insertInto: managedContext)
