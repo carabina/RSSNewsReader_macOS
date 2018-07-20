@@ -8,11 +8,7 @@
 
 import Cocoa
 
-class RSSNotification: NSObject {
-    /// 사용자가 Feed Provider 추가 버튼을 누름.
-//    static var SHOW_ADD_PROVIDER: NSNotification.Name {
-//        return NSNotification.Name("show_add_provider")
-//    }
-    
-    
+extension NSNotification.Name {
+    /// 새로운 웹사이트 (뉴스피드 제공자)가 추가됨.
+    static var newProviderAdded = NSNotification.Name.init("newProviderAdded")
 }

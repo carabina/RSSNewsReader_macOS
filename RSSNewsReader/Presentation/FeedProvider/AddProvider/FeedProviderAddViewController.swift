@@ -66,24 +66,36 @@ fileprivate extension FeedProviderAddViewController {
         isLoading = true
         
         NetworkService.shared.xml(url: stringURL) { [weak self] (data, error) in
+            guard let weakSelf = self else {
+                return
+            }
+            
             guard error == nil else {
                 AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: "해당 웹사이트에서 제공하는 뉴스를 정상적으로 가져오지 못했습니다.")
-                self?.isLoading = false
+                
+                weakSelf.isLoading = false
+                
                 return
             }
             
             guard let _data = data else {
                 // TODO: 에러가 없는데 데이터가 nil일 경우가 있을까?
-                self?.isLoading = false
+                weakSelf.isLoading = false
+                
                 return
             }
             
             if let provider = RSSXmlParser.shared.parseProvider(data: _data) {
                 if let error = CoreDataManager.shared.save(provider: provider) {
                     AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: error.localizedDescription)
+                    
+                    weakSelf.isLoading = false
+                } else {
+                    NotificationCenter.default.post(name: NSNotification.Name.newProviderAdded, object: self)
+                    
+                    weakSelf.textField.delegate = nil
+                    weakSelf.dismissViewController(weakSelf)
                 }
-                
-                self?.isLoading = false
             }
         }
     }

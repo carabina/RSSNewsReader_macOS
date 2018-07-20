@@ -21,6 +21,8 @@ class FeedProviderViewController: NSViewController {
         super.viewDidLoad()
         
         self.preferredContentSize = NSSize(width: 200, height: 500)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotificationNotified(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
  
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -39,6 +41,12 @@ class FeedProviderViewController: NSViewController {
     }
     
     @IBAction func didRefreshBtnTapped(_ sender: Any) {
+        self.reloadData()
+    }
+    
+    // MARK: - Notification
+    
+    @objc func onNewProviderAddedNotificationNotified(_ notification: NSNotification) {
         self.reloadData()
     }
 }

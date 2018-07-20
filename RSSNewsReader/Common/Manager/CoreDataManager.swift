@@ -49,7 +49,7 @@ class CoreDataManager: NSObject {
 // MARK: - Interface
 extension CoreDataManager {
     
-    func save(provider: RSSProvider) -> Error? { // TODO: 중복저장 안되도록 수정해야 함.
+    func save(provider: RSSProvider) -> Error? {
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
         }
@@ -98,6 +98,24 @@ extension CoreDataManager {
             return (providerArray, nil)
         } catch let error as NSError {
             return (nil, CoreDataError.fetchFailed(reason: error.localizedDescription))
+        }
+    }
+    
+    func removeAllProviders() -> Error? {
+        guard let managedContext = self.managedContext else {
+            return CoreDataError.managedContextNotExist
+        }
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: RSSProvider.entity())
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+            
+            return nil
+        } catch let error as NSError {
+            return error
         }
     }
 }
