@@ -9,6 +9,6 @@
 import Cocoa
 
 extension NSNotification.Name {
-    /// 새로운 웹사이트 (뉴스피드 제공자)가 추가됨.
-    static var newProviderAdded = NSNotification.Name.init("newProviderAdded")
+    /// 새로운 웹사이트 (뉴스 제공자)가 추가됨.
+    static let newProviderAdded = NSNotification.Name("newProviderAdded")
 }

@@ -9,6 +9,7 @@
 import Cocoa
 import Alamofire
 
+/// Http 통신을 담당하는 클래스
 class NetworkService: NSObject {
     static let shared = NetworkService()
     

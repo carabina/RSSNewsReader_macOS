@@ -25,6 +25,7 @@
 		6377135620EE463000B08D3F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6377135520EE463000B08D3F /* DetailViewController.swift */; };
 		638B332820F4758A00E01B85 /* NSNotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B332720F4758A00E01B85 /* NSNotificationName+Extension.swift */; };
 		63919A52210271AE0055E6DB /* NSView+Rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63919A51210271AE0055E6DB /* NSView+Rotate.swift */; };
+		63919A5421035EBC0055E6DB /* ArticleDispatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63919A5321035EBC0055E6DB /* ArticleDispatchService.swift */; };
 		639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639756F020E9CBBD00208382 /* AppDelegate.swift */; };
 		639756F320E9CBBD00208382 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639756F220E9CBBD00208382 /* MainSplitViewController.swift */; };
 		639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 639756F420E9CBBD00208382 /* RSSNewsReader.xcdatamodeld */; };
@@ -71,6 +72,7 @@
 		6377135520EE463000B08D3F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		638B332720F4758A00E01B85 /* NSNotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationName+Extension.swift"; sourceTree = "<group>"; };
 		63919A51210271AE0055E6DB /* NSView+Rotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Rotate.swift"; sourceTree = "<group>"; };
+		63919A5321035EBC0055E6DB /* ArticleDispatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDispatchService.swift; sourceTree = "<group>"; };
 		639756ED20E9CBBD00208382 /* RSSNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639756F020E9CBBD00208382 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639756F220E9CBBD00208382 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				63C17BA620F23D820062566D /* RSSXmlParser.swift */,
 				63C17B9720F1DA560062566D /* NetworkService.swift */,
+				63919A5321035EBC0055E6DB /* ArticleDispatchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6377135620EE463000B08D3F /* DetailViewController.swift in Sources */,
+				63919A5421035EBC0055E6DB /* ArticleDispatchService.swift in Sources */,
 				639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */,
 				6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */,
 				6363D26820F4CDDE008D6FFD /* FeedProviderAddViewController.swift in Sources */,

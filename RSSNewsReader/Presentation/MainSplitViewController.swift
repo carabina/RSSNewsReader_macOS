@@ -9,22 +9,27 @@
 import Cocoa
 
 class MainSplitViewController: NSSplitViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    
+    var previewViewController: PreviewViewController? {
+        return (self.childViewControllers.filter { $0.className == PreviewViewController.className() }.first) as? PreviewViewController
     }
+}
 
-    // MARK: - Interface
+// MARK: - Interface
+extension MainSplitViewController {
     func showAddProviderView() {
         let vc = FeedProviderAddViewController.instance()
         presentViewControllerAsSheet(vc)
     }
+}
+
+// MARK: - Internal
+fileprivate extension MainSplitViewController {
+    
 }

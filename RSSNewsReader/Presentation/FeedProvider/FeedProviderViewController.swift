@@ -8,6 +8,8 @@
 
 import Cocoa
 
+// TODO: 그룹 기능 추가.
+// TODO: 드래그&드롭으로 웹사이트를 그룹으로 이동할 수 있도록 수정.
 class FeedProviderViewController: NSViewController {
     @IBOutlet weak var plusBtn: NSButton!
     @IBOutlet weak var refreshBtn: NSButton!
@@ -41,13 +43,13 @@ class FeedProviderViewController: NSViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = NSColor.clear
-        self.tableView.selectionHighlightStyle = .none
+        self.tableView.selectionHighlightStyle = .regular
+        self.tableView.action = #selector(onCellClicked)
         
         self.reloadData()
     }
     
     // MARK: - Button Action
-    
     @IBAction func didPlusBtnTapped(_ sender: Any) {
         if let parent = parent as? MainSplitViewController {
             parent.showAddProviderView()
@@ -59,9 +61,19 @@ class FeedProviderViewController: NSViewController {
     }
     
     // MARK: - Notification
-    
     @objc func onNewProviderAddedNotificationNotified(_ notification: NSNotification) {
         self.reloadData()
+    }
+    
+    // MARK: - TableView Action
+    @objc func onCellClicked() {
+        guard let parent = parent as? MainSplitViewController else {
+            return
+        }
+        
+        if let previewVC = parent.previewViewController {
+            previewVC.provider = self.providers[tableView.clickedRow]
+        }
     }
 }
 
@@ -97,7 +109,7 @@ extension FeedProviderViewController: NSTableViewDataSource {
     }
 }
 
-// MARK: - NSTableVIewDelegate
+// MARK: - NSTableViewDelegate
 extension FeedProviderViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("\(FeedProviderCellView.self)"), owner: self) as! FeedProviderCellView

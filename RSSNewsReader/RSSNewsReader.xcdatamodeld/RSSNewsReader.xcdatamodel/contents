@@ -6,14 +6,16 @@
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pubDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="provider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreProvider" inverseName="articles" inverseEntity="CoreProvider" syncable="YES"/>
     </entity>
     <entity name="CoreProvider" representedClassName="CoreProvider" syncable="YES" codeGenerationType="class">
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="introduce" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreArticle" inverseName="provider" inverseEntity="CoreArticle" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoreArticle" positionX="-65" positionY="99" width="128" height="120"/>
-        <element name="CoreProvider" positionX="-63" positionY="-27" width="128" height="90"/>
+        <element name="CoreArticle" positionX="162" positionY="63" width="128" height="133"/>
+        <element name="CoreProvider" positionX="-63" positionY="-27" width="128" height="103"/>
     </elements>
 </model>

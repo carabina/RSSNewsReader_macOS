@@ -11,6 +11,14 @@ import Cocoa
 class PreviewViewController: NSViewController {
     @IBOutlet weak var tableView: NSTableView!
     
+    var provider: RSSProvider? {
+        didSet {
+            // TODO: CoreData에 저장된 CoreArticle Loading.
+        }
+    }
+    
+    fileprivate var articles = [RSSArticle]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +33,7 @@ class PreviewViewController: NSViewController {
 // MARK: - NSTableViewDataSource
 extension PreviewViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 5
+        return articles.count
     }
 }
 
