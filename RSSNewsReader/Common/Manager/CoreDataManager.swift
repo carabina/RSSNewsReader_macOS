@@ -34,7 +34,6 @@ extension CoreDataError: LocalizedError {
 }
 
 class CoreDataManager: NSObject {
-    // Singleton
     static let shared = CoreDataManager()
     
     var appDelegate: AppDelegate? {
@@ -46,7 +45,7 @@ class CoreDataManager: NSObject {
     }
 }
 
-// MARK: - Interface
+// MARK: - Interface - Save
 extension CoreDataManager {
     
     func save(provider: RSSProvider) -> Error? {
@@ -80,6 +79,21 @@ extension CoreDataManager {
         }
     }
     
+    func save(provider: RSSProvider, articles: [RSSArticle]) -> Error? {
+        guard let managedContext = self.managedContext else {
+            return CoreDataError.managedContextNotExist
+        }
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: RSSArticle.entity(), in: managedContext) else {
+            return CoreDataError.entityNameNotCorrect
+        }
+        
+
+    }
+}
+
+// MARK: - Interface - Fetch
+extension CoreDataManager {
     func fetchProvider() -> (provider: [RSSProvider]?, error: Error?) {
         guard let managedContext = self.managedContext else {
             return (nil, CoreDataError.managedContextNotExist)
@@ -101,6 +115,30 @@ extension CoreDataManager {
         }
     }
     
+    func fetchArticles() -> (articles: [RSSArticle]?, error: Error?) {
+        guard let managedContext = self.managedContext else {
+            return (nil, CoreDataError.managedContextNotExist)
+        }
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: RSSArticle.entity())
+        
+        do {
+            let objectArray = try managedContext.fetch(fetchRequest)
+            var articleArray = [RSSArticle]()
+            
+            objectArray.forEach { managedObject in
+                articleArray.append(RSSArticle(managedObject: managedObject))
+            }
+            
+            return (articleArray, nil)
+        } catch let error as NSError {
+            return (nil, CoreDataError.fetchFailed(reason: error.localizedDescription))
+        }
+    }
+}
+
+// MARK: - Interface - Delete
+extension CoreDataManager {
     func removeAllProviders() -> Error? {
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
@@ -120,7 +158,20 @@ extension CoreDataManager {
     }
 }
 
-// MARK: - Internal
+// MARK: - Internal - Getting CoreModel
 fileprivate extension CoreDataManager {
-    
+    func coreProvider(_ provider: RSSProvider) -> (coreProvider: CoreProvider?, error: Error?) {
+        guard let managedContext = self.managedContext else {
+            return (nil, CoreDataError.managedContextNotExist)
+        }
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: RSSProvider.entity())
+        fetchRequest.predicate = NSPredicate(format: "name = %@", provider.title)
+        
+        do {
+            return (try managedContext.fetch(fetchRequest).first as? CoreProvider, nil)
+        } catch let error as NSError {
+            return (nil, CoreDataError.fetchFailed(reason: error.localizedDescription))
+        }
+    }
 }

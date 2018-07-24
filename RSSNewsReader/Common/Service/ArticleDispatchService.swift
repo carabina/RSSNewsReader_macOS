@@ -17,7 +17,32 @@ class ArticleDispatchService: NSObject {
 
 // MARK: - Interface
 extension ArticleDispatchService {
-    func startTimer() {
-        
+    func startTimer(onCompletion: @escaping () -> ()) {
+        Timer.scheduledTimer(withTimeInterval: dispatchInterval, repeats: true) { timer in
+            guard let providers = CoreDataManager.shared.fetchProvider().provider else {
+                return
+            }
+            
+            var remainCnt = providers.count {
+                didSet {
+                    if remainCnt == 0 {
+                        onCompletion()
+                    }
+                }
+            }
+            
+            providers.forEach { provider in
+                // TODO: link에 접근하여 article을 받아온 이후 CoreData에 저장하자!
+                // TODO: 중복된 기사는 저장이되면 안된다!
+                NetworkService.shared.xml(url: provider.link, onCompletion: { (data, error) in
+                    guard error == nil else {
+                        remainCnt -= 1
+                        return
+                    }
+                    
+                    
+                })
+            }
+        }
     }
 }
