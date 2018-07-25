@@ -37,16 +37,16 @@ class FeedProviderViewController: NSViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotificationNotified(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
-        
+
         self.preferredContentSize = NSSize(width: 200, height: 500)
- 
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = NSColor.clear
         self.tableView.selectionHighlightStyle = .regular
         self.tableView.action = #selector(onCellClicked)
-        
-        self.reloadData()
+
+        self.reloadProviders()
     }
     
     // MARK: - Button Action
@@ -57,12 +57,12 @@ class FeedProviderViewController: NSViewController {
     }
     
     @IBAction func didRefreshBtnTapped(_ sender: Any) {
-        self.reloadData()
+        self.reloadProviders()
     }
     
     // MARK: - Notification
     @objc func onNewProviderAddedNotificationNotified(_ notification: NSNotification) {
-        self.reloadData()
+        self.reloadProviders()
     }
     
     // MARK: - TableView Action
@@ -80,7 +80,7 @@ class FeedProviderViewController: NSViewController {
 // MARK: - Internal
 fileprivate extension FeedProviderViewController {
     
-    func reloadData() {
+    func reloadProviders() {
         self.isLoading = true
         
         let tuple = CoreDataManager.shared.fetchProvider()

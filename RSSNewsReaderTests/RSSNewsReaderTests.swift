@@ -62,7 +62,10 @@ class RSSNewsReaderTests: XCTestCase {
             XCTAssertNotNil(data)
             
             let articles = RSSXmlParser.shared.parseArticles(data: data!)
-            articles.forEach { article in
+            
+            XCTAssertNotNil(articles)
+            
+            articles!.forEach { article in
                 XCTAssertNotNil(article.title)
                 XCTAssertNotNil(article.link)
                 XCTAssertNotNil(article.pubDate)
@@ -81,21 +84,14 @@ class RSSNewsReaderTests: XCTestCase {
     }
     
     // MARK: - CoreData Test
-    func testRemoveAllAttributesOfCoreProvider() {
+    func testRemoveAllEntitiesOfCoreProvider() {
         let error = CoreDataManager.shared.removeAllProviders()
         
         XCTAssertNil(error)
     }
     
-    func testCoreDataModel() {
-        guard let provider = CoreDataManager.shared.test() else {
-            XCTAssert(false)
-            return
-        }
+    func testCoreDataReset() {
         
-        provider.setValue("test", forKey: "name")
-        
-        XCTAssertEqual(provider.value(forKey: "name") as! String, "test")
     }
     
     // MARK: - Http Test

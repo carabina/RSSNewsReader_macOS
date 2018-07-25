@@ -67,6 +67,7 @@ extension CoreDataManager {
         let coreProvider = NSManagedObject(entity: entity, insertInto: managedContext)
         
         coreProvider.setValue(provider.title, forKey: "name")
+        coreProvider.setValue(provider.link, forKey: "link")
         coreProvider.setValue(provider.introduce, forKey: "introduce")
         coreProvider.setValue(provider.imageURL, forKey: "imageURL")
         
@@ -79,7 +80,7 @@ extension CoreDataManager {
         }
     }
     
-    func save(providerName: String, articles: [RSSArticle]) -> Error? {
+    func save(articles: [RSSArticle]) -> Error? {
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
         }
@@ -88,7 +89,11 @@ extension CoreDataManager {
             return CoreDataError.entityNameNotCorrect
         }
         
-        let tuple = self.provider(name: providerName)
+        guard articles.count > 0 else {
+            return nil
+        }
+        
+        let tuple = self.provider(name: articles.first!.providerName)
 
         // Article이 소속될 Provider를 가져옴.
         guard let coreProvider = tuple.coreProvider else {
@@ -99,6 +104,7 @@ extension CoreDataManager {
             }
         }
         
+        // TODO: 중복 저장 되면 안됨!
         articles.forEach { article in
             let coreArticle = CoreArticle(entity: entity, insertInto: managedContext)
             

@@ -18,31 +18,43 @@ class ArticleDispatchService: NSObject {
 // MARK: - Interface
 extension ArticleDispatchService {
     func startTimer(onCompletion: @escaping () -> ()) {
-        Timer.scheduledTimer(withTimeInterval: dispatchInterval, repeats: true) { timer in
-            guard let providers = CoreDataManager.shared.fetchProvider().provider else {
-                return
+        Timer.scheduledTimer(withTimeInterval: dispatchInterval, repeats: true) { [weak self] timer in
+            self?.dispatch {
+                onCompletion()
             }
-            
-            var remainCnt = providers.count {
-                didSet {
-                    if remainCnt == 0 {
-                        onCompletion()
-                    }
+        }
+    }
+    
+    func dispatch(onCompletion: @escaping () -> ()) {
+        guard let providers = CoreDataManager.shared.fetchProvider().provider else {
+            return
+        }
+        
+        var remainCnt = providers.count {
+            didSet {
+                if remainCnt == 0 {
+                    onCompletion()
                 }
             }
-            
-            providers.forEach { provider in
-                // TODO: link에 접근하여 article을 받아온 이후 CoreData에 저장하자!
-                // TODO: 중복된 기사는 저장이되면 안된다!
-                NetworkService.shared.xml(url: provider.link, onCompletion: { (data, error) in
-                    guard error == nil else {
-                        remainCnt -= 1
-                        return
+        }
+        
+        providers.forEach { provider in
+            NetworkService.shared.xml(url: provider.link, onCompletion: { (data, error) in
+                // 데이터가 없거나 파싱 에러가 발생하면 API 완료 처리함.
+                guard let _data = data, error == nil else {
+                    remainCnt -= 1
+                    return
+                }
+                
+                if let articles = RSSXmlParser.shared.parseArticles(data: _data) {
+                    if let error = CoreDataManager.shared.save(articles: articles) {
+                        // TODO: 에러 처리 어떻게?? Alert로 띄우면 사알짝 거시기 함.
+                        print(error)
                     }
                     
-                    
-                })
-            }
+                    remainCnt -= 1
+                }
+            })
         }
     }
 }
