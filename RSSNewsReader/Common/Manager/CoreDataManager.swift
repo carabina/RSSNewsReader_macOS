@@ -144,7 +144,7 @@ extension CoreDataManager {
         }
     }
     
-    func fetchArticles() -> (articles: [RSSArticle]?, error: Error?) {
+    func fetchArticles(providerName: String) -> (articles: [RSSArticle]?, error: Error?) {
         guard let managedContext = self.managedContext else {
             return (nil, CoreDataError.managedContextNotExist)
         }
@@ -155,9 +155,14 @@ extension CoreDataManager {
             let objectArray = try managedContext.fetch(fetchRequest)
             var articleArray = [RSSArticle]()
             
-            objectArray.forEach { managedObject in
-                articleArray.append(RSSArticle(managedObject: managedObject))
-            }
+            objectArray
+                .filter { managedObject in
+                    let savedName = managedObject.value(forKey: "providerName") as! String
+                    return savedName == providerName
+                }
+                .forEach { managedObject in
+                    articleArray.append(RSSArticle(managedObject: managedObject))
+                }
             
             return (articleArray, nil)
         } catch let error as NSError {
