@@ -9,6 +9,8 @@
 import Cocoa
 import SWXMLHash
 
+// TODO: Error 처리 해야함.
+
 /// XML RSS를 파싱하는 클래스.
 class RSSXmlParser: NSObject {
     static let shared = RSSXmlParser()
@@ -33,9 +35,13 @@ extension RSSXmlParser {
         return RSSProvider(title: title, introduce: introduce, link: linkURL, imageURL: imageURL)
     }
     
-    func parseArticles(data: Data) -> [RSSArticle] {
+    func parseArticles(data: Data) -> [RSSArticle]? {
         let xml = SWXMLHash.parse(data)
         var articles = [RSSArticle]()
+        
+        guard let providerName = xml["rss"]["channel"]["title"].element?.text else {
+            return nil
+        }
         
         for i in 0 ..< xml["rss"]["channel"]["item"].all.count {
             let item = xml["rss"]["channel"]["item"][i]
@@ -56,7 +62,7 @@ extension RSSXmlParser {
                 continue
             }
             
-            articles.append(RSSArticle(title: title, link: link, contents: contents, pubDate: stringToDate(dateString)!))
+            articles.append(RSSArticle(providerName: providerName, title: title, link: link, contents: contents, pubDate: stringToDate(dateString)!))
         }
 
         return articles

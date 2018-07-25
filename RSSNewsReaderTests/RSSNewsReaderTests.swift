@@ -34,7 +34,7 @@ class RSSNewsReaderTests: XCTestCase {
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
-            let provider = RSSXmlParser.shared.parseProvider(data: data!)
+            let provider = RSSXmlParser.shared.parseProvider(linkURL: rssURL, data: data!)
             
             XCTAssertNotNil(provider)
             XCTAssertNotNil(provider!.title)
@@ -85,6 +85,17 @@ class RSSNewsReaderTests: XCTestCase {
         let error = CoreDataManager.shared.removeAllProviders()
         
         XCTAssertNil(error)
+    }
+    
+    func testCoreDataModel() {
+        guard let provider = CoreDataManager.shared.test() else {
+            XCTAssert(false)
+            return
+        }
+        
+        provider.setValue("test", forKey: "name")
+        
+        XCTAssertEqual(provider.value(forKey: "name") as! String, "test")
     }
     
     // MARK: - Http Test

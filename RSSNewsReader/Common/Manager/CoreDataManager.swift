@@ -79,16 +79,39 @@ extension CoreDataManager {
         }
     }
     
-    func save(provider: RSSProvider, articles: [RSSArticle]) -> Error? {
+    func save(providerName: String, articles: [RSSArticle]) -> Error? {
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
         }
-        
+
         guard let entity = NSEntityDescription.entity(forEntityName: RSSArticle.entity(), in: managedContext) else {
             return CoreDataError.entityNameNotCorrect
         }
         
+        let tuple = self.provider(name: providerName)
 
+        // Article이 소속될 Provider를 가져옴.
+        guard let coreProvider = tuple.coreProvider else {
+            if let error = tuple.error {
+                return CoreDataError.fetchFailed(reason: error.localizedDescription)
+            } else {
+                return CoreDataError.fetchFailed(reason: "웹사이트 이름이 정확하지 않습니다.")
+            }
+        }
+        
+        articles.forEach { article in
+            let coreArticle = CoreArticle(entity: entity, insertInto: managedContext)
+            
+            coreArticle.setValue(article.providerName, forKey: "providerName")
+            coreArticle.setValue(article.title, forKey: "title")
+            coreArticle.setValue(article.link, forKey: "link")
+            coreArticle.setValue(article.contents, forKey: "contents")
+            coreArticle.setValue(article.pubDate, forKey: "pubDate")
+            
+            coreProvider.addToArticle(coreArticle)
+        }
+        
+        return nil
     }
 }
 
@@ -160,13 +183,13 @@ extension CoreDataManager {
 
 // MARK: - Internal - Getting CoreModel
 fileprivate extension CoreDataManager {
-    func coreProvider(_ provider: RSSProvider) -> (coreProvider: CoreProvider?, error: Error?) {
+    func provider(name: String) -> (coreProvider: CoreProvider?, error: Error?) {
         guard let managedContext = self.managedContext else {
             return (nil, CoreDataError.managedContextNotExist)
         }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: RSSProvider.entity())
-        fetchRequest.predicate = NSPredicate(format: "name = %@", provider.title)
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
         do {
             return (try managedContext.fetch(fetchRequest).first as? CoreProvider, nil)

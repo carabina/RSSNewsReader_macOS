@@ -9,6 +9,8 @@
 import Cocoa
 
 class RSSArticle: NSObject, CoreDataInterface {
+    var providerName: String
+    
     var title: String
     var link: String
     var contents: String
@@ -18,7 +20,8 @@ class RSSArticle: NSObject, CoreDataInterface {
         return "\(CoreArticle.self)"
     }
     
-    init(title: String, link: String, contents: String, pubDate: Date) {
+    init(providerName: String, title: String, link: String, contents: String, pubDate: Date) {
+        self.providerName = providerName
         self.title = title
         self.link = link
         self.contents = contents
@@ -26,6 +29,7 @@ class RSSArticle: NSObject, CoreDataInterface {
     }
     
     required init(managedObject: NSManagedObject) {
+        self.providerName = managedObject.value(forKey: "providerName") as! String
         self.title = managedObject.value(forKey: "title") as! String
         self.link = managedObject.value(forKey: "link") as! String
         self.contents = managedObject.value(forKey: "contents") as! String
