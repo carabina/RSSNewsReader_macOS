@@ -13,10 +13,23 @@ class PreviewViewController: NSViewController {
     
     var provider: RSSProvider? {
         didSet {
-            // TODO: CoreData에 저장된 CoreArticle Loading.
+            guard let _provider = provider else {
+                return
+            }
+            
+            let tuple = CoreDataManager.shared.fetchArticles(providerName: _provider.title)
+            
+            guard tuple.error == nil else {
+                AlertManager.shared.show(style: .critical, title: "뉴스 로딩 실패", message: tuple.error!.localizedDescription)
+                return
+            }
+            
+            if let fetchedArticles = tuple.articles {
+                self.articles = fetchedArticles
+            }
         }
     }
-    
+
     fileprivate var articles = [RSSArticle]()
     
     override func viewDidLoad() {
