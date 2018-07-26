@@ -132,6 +132,12 @@ extension CoreDataManager {
                 coreProvider.addToArticle(coreArticle)
             }
         }
+    
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            return CoreDataError.saveFailed(reason: error.localizedDescription)
+        }
         
         return nil
     }
