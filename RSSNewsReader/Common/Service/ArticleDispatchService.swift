@@ -25,7 +25,7 @@ extension ArticleDispatchService {
         }
     }
     
-    func dispatch(onCompletion: @escaping () -> ()) {
+    func dispatch(onCompletion: (() -> ())?) {
         guard let providers = CoreDataManager.shared.fetchProvider().provider else {
             return
         }
@@ -33,7 +33,8 @@ extension ArticleDispatchService {
         var remainCnt = providers.count {
             didSet {
                 if remainCnt == 0 {
-                    onCompletion()
+                    NotificationCenter.default.post(name: NSNotification.Name.newArticlesAdded, object: self)
+                    onCompletion?()
                 }
             }
         }

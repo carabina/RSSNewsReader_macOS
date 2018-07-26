@@ -13,20 +13,7 @@ class PreviewViewController: NSViewController {
     
     var provider: RSSProvider? {
         didSet {
-            guard let _provider = provider else {
-                return
-            }
-            
-            let tuple = CoreDataManager.shared.fetchArticles(providerName: _provider.title)
-            
-            guard tuple.error == nil else {
-                AlertManager.shared.show(style: .critical, title: "뉴스 로딩 실패", message: tuple.error!.localizedDescription)
-                return
-            }
-            
-            if let fetchedArticles = tuple.articles {
-                self.articles = fetchedArticles
-            }
+            reloadArticles()
         }
     }
 
@@ -35,11 +22,39 @@ class PreviewViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.preferredContentSize = NSSize(width: 350, height: 600)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewArticleAddedNotification(_:)), name: NSNotification.Name.newArticlesAdded, object: nil)
+        
+        preferredContentSize = NSSize(width: 350, height: 600)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.selectionHighlightStyle = .none
+    }
+    
+    // MARK: - Notification
+    @objc func onNewArticleAddedNotification(_ notification: NSNotification) {
+        reloadArticles()
+    }
+}
+
+// MARK: - Internal
+fileprivate extension PreviewViewController {
+    func reloadArticles() {
+        guard let providerName = provider?.title else {
+            return
+        }
+        
+        let fetchResult = CoreDataManager.shared.fetchArticles(providerName: providerName)
+        
+        guard fetchResult.error == nil else {
+            AlertManager.shared.show(style: .critical, title: "뉴스 로딩 실패", message: fetchResult.error!.localizedDescription)
+            return
+        }
+        
+        if let fetchedArticles = fetchResult.articles {
+            self.articles = fetchedArticles
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -53,7 +68,12 @@ extension PreviewViewController: NSTableViewDataSource {
 // MARK: - NSTableViewDelegate
 extension PreviewViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "\(PreviewTblCellView.self)"), owner: self)
+        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "\(PreviewTblCellView.self)"), owner: self) as! PreviewTblCellView
+        let article = articles[row]
+        
+        view.providerName.stringValue = article.providerName
+        view.articleTitle.stringValue = article.title
+        //view.regDateAt.stringValue = article.pubDate
         
         return view
     }

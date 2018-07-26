@@ -90,8 +90,10 @@ class RSSNewsReaderTests: XCTestCase {
         XCTAssertNil(error)
     }
     
-    func testCoreDataReset() {
+    func testRemoveAllEntitiesOfCoreArticle() {
+        let error = CoreDataManager.shared.removeAllArticles(providerName: "테크니들")
         
+        XCTAssertNil(error)
     }
     
     // MARK: - Http Test

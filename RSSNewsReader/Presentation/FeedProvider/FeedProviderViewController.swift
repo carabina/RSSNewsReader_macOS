@@ -58,6 +58,8 @@ class FeedProviderViewController: NSViewController {
     
     @IBAction func didRefreshBtnTapped(_ sender: Any) {
         self.reloadProviders()
+        
+        ArticleDispatchService.shared.dispatch(onCompletion: nil)
     }
     
     // MARK: - Notification
@@ -71,7 +73,7 @@ class FeedProviderViewController: NSViewController {
             return
         }
         
-        if let previewVC = parent.previewViewController {
+        if let previewVC = parent.previewViewController, tableView.clickedRow >= 0 {
             previewVC.provider = self.providers[tableView.clickedRow]
         }
     }
@@ -79,18 +81,17 @@ class FeedProviderViewController: NSViewController {
 
 // MARK: - Internal
 fileprivate extension FeedProviderViewController {
-    
     func reloadProviders() {
         self.isLoading = true
         
-        let tuple = CoreDataManager.shared.fetchProvider()
+        let fetchResult = CoreDataManager.shared.fetchProvider()
         
-        guard let providers = tuple.provider, !providers.isEmpty else {
+        guard let providers = fetchResult.provider, !providers.isEmpty else {
             return
         }
         
-        guard tuple.error == nil else {
-            AlertManager.shared.show(style: .critical, title: "웹사이트 로딩 실패", message: tuple.error!.localizedDescription)
+        guard fetchResult.error == nil else {
+            AlertManager.shared.show(style: .critical, title: "웹사이트 로딩 실패", message: fetchResult.error!.localizedDescription)
             return
         }
         
