@@ -52,7 +52,7 @@ fileprivate extension PreviewViewController {
             return
         }
         
-        if let fetchedArticles = fetchResult.articles {
+        if let fetchedArticles = fetchResult.articles, !fetchedArticles.isEmpty {
             self.articles = fetchedArticles
             self.tableView.reloadData()
         }

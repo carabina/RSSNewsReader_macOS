@@ -17,8 +17,6 @@ extension NSView {
         rotateAnimation.duration = timeToRotate
         rotateAnimation.repeatCount = .infinity
         
-        self.wantsLayer = true
-        
         guard let layer = self.layer else {
             return
         }

@@ -11,14 +11,18 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // TODO: ArticleDispatchService 시작하자!!
+        // TODO: ArticleDisaptchService timer 시작해야 함.
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotification(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        
+    }
+    
+    // MARK: - Notification
+    @objc func onNewProviderAddedNotification(_ notification: NSNotification) {
+        ArticleDispatchService.shared.dispatch(onCompletion: nil)
     }
 
     // MARK: - Core Data stack

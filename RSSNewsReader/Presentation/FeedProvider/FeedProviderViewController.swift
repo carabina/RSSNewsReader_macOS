@@ -17,11 +17,7 @@ class FeedProviderViewController: NSViewController {
     
     @IBOutlet weak var topbarView: NSView!
     @IBOutlet weak var tableView: NSTableView!
-    
-    fileprivate lazy var rssIndicator: RSSIndicatorView = {
-        return RSSIndicatorView.initFromNib()
-    }()
-    
+
     fileprivate var isLoading = false {
         didSet {
             refreshBtn.isHidden = isLoading
@@ -44,8 +40,6 @@ class FeedProviderViewController: NSViewController {
 
         self.preferredContentSize = NSSize(width: 200, height: 500)
         
-        self.view.addSubview(rssIndicator)
-
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = NSColor.clear
@@ -93,11 +87,15 @@ fileprivate extension FeedProviderViewController {
         let fetchResult = CoreDataManager.shared.fetchProvider()
         
         guard let providers = fetchResult.provider, !providers.isEmpty else {
+            self.isLoading = false
             return
         }
         
         guard fetchResult.error == nil else {
             AlertManager.shared.show(style: .critical, title: "웹사이트 로딩 실패", message: fetchResult.error!.localizedDescription)
+            
+            self.isLoading = false
+            
             return
         }
         

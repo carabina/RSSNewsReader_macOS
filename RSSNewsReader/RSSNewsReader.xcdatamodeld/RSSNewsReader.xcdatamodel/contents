@@ -9,7 +9,7 @@
         <relationship name="provider" maxCount="1" deletionRule="Nullify" destinationEntity="CoreProvider" inverseName="article" inverseEntity="CoreProvider" syncable="YES"/>
     </entity>
     <entity name="CoreProvider" representedClassName="CoreProvider" syncable="YES" codeGenerationType="class">
-        <attribute name="imageURL" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="introduce" attributeType="String" syncable="YES"/>
         <attribute name="link" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
