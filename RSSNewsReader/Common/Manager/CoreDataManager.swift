@@ -81,6 +81,10 @@ extension CoreDataManager {
     }
     
     func save(articles: [RSSArticle]) -> Error? {
+        guard articles.count > 0 else {
+            return nil
+        }
+        
         guard let managedContext = self.managedContext else {
             return CoreDataError.managedContextNotExist
         }
@@ -93,28 +97,40 @@ extension CoreDataManager {
             return nil
         }
         
-        let tuple = self.provider(name: articles.first!.providerName)
+        let fetchResult = self.provider(name: articles.first!.providerName)
 
         // Article이 소속될 Provider를 가져옴.
-        guard let coreProvider = tuple.coreProvider else {
-            if let error = tuple.error {
+        guard let coreProvider = fetchResult.coreProvider else {
+            if let error = fetchResult.error {
                 return CoreDataError.fetchFailed(reason: error.localizedDescription)
             } else {
                 return CoreDataError.fetchFailed(reason: "웹사이트 이름이 정확하지 않습니다.")
             }
         }
         
-        // TODO: 중복 저장 되면 안됨!
+        var articleTitleSet = Set<String>()
+        
+        let providerName = coreProvider.value(forKey: "name") as! String
+        let articleFetchResult = fetchArticles(providerName: providerName)
+        
+        articleFetchResult.articles?
+            .filter { $0.providerName == providerName }
+            .forEach { savedArticle in
+                articleTitleSet.insert(savedArticle.title)
+            }
+        
         articles.forEach { article in
-            let coreArticle = CoreArticle(entity: entity, insertInto: managedContext)
-            
-            coreArticle.setValue(article.providerName, forKey: "providerName")
-            coreArticle.setValue(article.title, forKey: "title")
-            coreArticle.setValue(article.link, forKey: "link")
-            coreArticle.setValue(article.contents, forKey: "contents")
-            coreArticle.setValue(article.pubDate, forKey: "pubDate")
-            
-            coreProvider.addToArticle(coreArticle)
+            if !articleTitleSet.contains(article.title) { // 동일한 제목의 기사는 저장하지 않음.
+                let coreArticle = CoreArticle(entity: entity, insertInto: managedContext)
+                
+                coreArticle.setValue(article.providerName, forKey: "providerName")
+                coreArticle.setValue(article.title, forKey: "title")
+                coreArticle.setValue(article.link, forKey: "link")
+                coreArticle.setValue(article.contents, forKey: "contents")
+                coreArticle.setValue(article.pubDate, forKey: "pubDate")
+                
+                coreProvider.addToArticle(coreArticle)
+            }
         }
         
         return nil
@@ -179,6 +195,30 @@ extension CoreDataManager {
         }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: RSSProvider.entity())
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+            
+            return nil
+        } catch let error as NSError {
+            return error
+        }
+    }
+    
+    func removeAllArticles(providerName: String) -> Error? {
+        guard let managedContext = self.managedContext else {
+            return CoreDataError.managedContextNotExist
+        }
+        
+        let fetchResult = provider(name: providerName)
+        
+        guard fetchResult.error == nil else {
+            return CoreDataError.fetchFailed(reason: fetchResult.error!.localizedDescription)
+        }
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: RSSArticle.entity())
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
