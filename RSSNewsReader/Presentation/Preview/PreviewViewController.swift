@@ -39,6 +39,7 @@ class PreviewViewController: NSViewController {
 
 // MARK: - Internal
 fileprivate extension PreviewViewController {
+    // TODO: 새로운 기사가 추가되면 insert 해주자 (with animation)
     func reloadArticles() {
         guard let providerName = provider?.title else {
             return

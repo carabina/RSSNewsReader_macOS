@@ -24,6 +24,8 @@
 		6377135420EE461F00B08D3F /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6377135320EE461F00B08D3F /* Detail.storyboard */; };
 		6377135620EE463000B08D3F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6377135520EE463000B08D3F /* DetailViewController.swift */; };
 		638B332820F4758A00E01B85 /* NSNotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B332720F4758A00E01B85 /* NSNotificationName+Extension.swift */; };
+		638EA3D0210A04B500A27959 /* RSSIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EA3CF210A04B500A27959 /* RSSIndicatorView.swift */; };
+		638EA3D2210A04C100A27959 /* RSSIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 638EA3D1210A04C100A27959 /* RSSIndicatorView.xib */; };
 		63919A52210271AE0055E6DB /* NSView+Rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63919A51210271AE0055E6DB /* NSView+Rotate.swift */; };
 		63919A5421035EBC0055E6DB /* ArticleDispatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63919A5321035EBC0055E6DB /* ArticleDispatchService.swift */; };
 		639756F120E9CBBD00208382 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639756F020E9CBBD00208382 /* AppDelegate.swift */; };
@@ -71,6 +73,8 @@
 		6377135320EE461F00B08D3F /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		6377135520EE463000B08D3F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		638B332720F4758A00E01B85 /* NSNotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationName+Extension.swift"; sourceTree = "<group>"; };
+		638EA3CF210A04B500A27959 /* RSSIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSIndicatorView.swift; sourceTree = "<group>"; };
+		638EA3D1210A04C100A27959 /* RSSIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSIndicatorView.xib; sourceTree = "<group>"; };
 		63919A51210271AE0055E6DB /* NSView+Rotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Rotate.swift"; sourceTree = "<group>"; };
 		63919A5321035EBC0055E6DB /* ArticleDispatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDispatchService.swift; sourceTree = "<group>"; };
 		639756ED20E9CBBD00208382 /* RSSNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		638EA3CE210A049A00A27959 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				638EA3CF210A04B500A27959 /* RSSIndicatorView.swift */,
+				638EA3D1210A04C100A27959 /* RSSIndicatorView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		639756E420E9CBBD00208382 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +264,7 @@
 		6397571120E9F3A700208382 /* FeedProvider */ = {
 			isa = PBXGroup;
 			children = (
+				638EA3CE210A049A00A27959 /* View */,
 				634C5C7020FB909E0027CFC3 /* AddProvider */,
 				6397571820EA041700208382 /* Cell */,
 				6397571420E9F54700208382 /* FeedProvider.storyboard */,
@@ -398,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				638EA3D2210A04C100A27959 /* RSSIndicatorView.xib in Resources */,
 				639756F820E9CBBE00208382 /* Assets.xcassets in Resources */,
 				6363D26320F4CD81008D6FFD /* FeedProviderAdd.storyboard in Resources */,
 				6397571520E9F54700208382 /* FeedProvider.storyboard in Resources */,
@@ -485,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6377135620EE463000B08D3F /* DetailViewController.swift in Sources */,
+				638EA3D0210A04B500A27959 /* RSSIndicatorView.swift in Sources */,
 				63919A5421035EBC0055E6DB /* ArticleDispatchService.swift in Sources */,
 				639756F620E9CBBD00208382 /* RSSNewsReader.xcdatamodeld in Sources */,
 				6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */,

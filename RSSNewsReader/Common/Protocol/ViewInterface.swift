@@ -20,7 +20,7 @@ extension ViewInterface where Self: NSView {
     static func initFromNib(nibName: String) -> Self {
         var topLevelObjects: NSArray?
         
-        if Bundle.main.loadNibNamed(NSNib.Name(nibName), owner: self, topLevelObjects: &topLevelObjects) {
+        if Bundle.main.loadNibNamed(NSNib.Name(nibName), owner: nil, topLevelObjects: &topLevelObjects) {
             if let view = topLevelObjects?.firstObject as? Self {
                 return view
             }

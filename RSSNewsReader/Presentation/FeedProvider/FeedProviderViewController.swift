@@ -18,6 +18,10 @@ class FeedProviderViewController: NSViewController {
     @IBOutlet weak var topbarView: NSView!
     @IBOutlet weak var tableView: NSTableView!
     
+    fileprivate lazy var rssIndicator: RSSIndicatorView = {
+        return RSSIndicatorView.initFromNib()
+    }()
+    
     fileprivate var isLoading = false {
         didSet {
             refreshBtn.isHidden = isLoading
@@ -39,6 +43,8 @@ class FeedProviderViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotificationNotified(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
 
         self.preferredContentSize = NSSize(width: 200, height: 500)
+        
+        self.view.addSubview(rssIndicator)
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
