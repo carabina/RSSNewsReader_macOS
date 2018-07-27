@@ -54,6 +54,7 @@ fileprivate extension PreviewViewController {
         
         if let fetchedArticles = fetchResult.articles, !fetchedArticles.isEmpty {
             self.articles = fetchedArticles
+            self.articles.sort(by: { $0.pubDate > $1.pubDate })
             self.tableView.reloadData()
         }
     }
