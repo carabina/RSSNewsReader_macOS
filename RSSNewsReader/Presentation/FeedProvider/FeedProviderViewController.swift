@@ -59,7 +59,7 @@ class FeedProviderViewController: NSViewController {
     @IBAction func didRefreshBtnTapped(_ sender: Any) {
         self.reloadProviders()
         
-        ArticleDispatchService.shared.dispatch(onCompletion: nil)
+        ArticleDispatchService.shared.dispatch(providerName: nil, onCompletion: nil)
     }
     
     // MARK: - Notification

@@ -19,13 +19,13 @@ class ArticleDispatchService: NSObject {
 extension ArticleDispatchService {
     func startTimer(onCompletion: @escaping () -> ()) {
         Timer.scheduledTimer(withTimeInterval: dispatchInterval, repeats: true) { [weak self] timer in
-            self?.dispatch {
+            self?.dispatch(providerName: nil) {
                 onCompletion()
             }
         }
     }
     
-    func dispatch(onCompletion: (() -> ())?) {
+    func dispatch(providerName: String?, onCompletion: (() -> ())?) {
         guard let providers = CoreDataManager.shared.fetchProvider().provider else {
             return
         }
@@ -39,7 +39,15 @@ extension ArticleDispatchService {
             }
         }
         
-        providers.forEach { provider in
+        providers
+            .filter {
+                if let name = providerName {
+                    return $0.title == name
+                } else {
+                    return true
+                }
+            }
+            .forEach { provider in
             NetworkService.shared.xml(url: provider.link, onCompletion: { (data, error) in
                 // 데이터가 없거나 파싱 에러가 발생하면 API 완료 처리함.
                 guard let _data = data, error == nil else {

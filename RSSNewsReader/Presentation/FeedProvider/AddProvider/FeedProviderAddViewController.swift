@@ -93,6 +93,8 @@ fileprivate extension FeedProviderAddViewController {
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name.newProviderAdded, object: self)
                     
+                    ArticleDispatchService.shared.dispatch(providerName: provider.title, onCompletion: nil)
+                    
                     weakSelf.textField.delegate = nil
                     weakSelf.dismissViewController(weakSelf)
                 }
