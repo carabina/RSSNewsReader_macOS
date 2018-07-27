@@ -74,7 +74,10 @@ extension PreviewViewController: NSTableViewDelegate {
         
         view.providerName.stringValue = article.providerName
         view.articleTitle.stringValue = article.title
-        //view.regDateAt.stringValue = article.pubDate
+        
+        if let diffDays = RSSUtil.diffBetweenDays(article.pubDate, Date()) {
+            view.publishedAt.stringValue = (diffDays == 0) ? "오늘" : String(format: "%d일 전", diffDays)
+        }
         
         return view
     }

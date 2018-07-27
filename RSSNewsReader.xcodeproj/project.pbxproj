@@ -37,6 +37,7 @@
 		6397571C20EA05E700208382 /* FeedProviderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397571B20EA05E700208382 /* FeedProviderCellView.swift */; };
 		63C17B9820F1DA560062566D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17B9720F1DA560062566D /* NetworkService.swift */; };
 		63C17BA720F23D820062566D /* RSSXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17BA620F23D820062566D /* RSSXmlParser.swift */; };
+		63EF03C7210AFA4C00576A75 /* RSSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF03C6210AFA4C00576A75 /* RSSUtil.swift */; };
 		B1427E39DE1D39BF2FED4867 /* Pods_RSSNewsReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AC691DA758D32A610B698 /* Pods_RSSNewsReaderTests.framework */; };
 		BDF45A8B3C67E5071EC594FC /* Pods_RSSNewsReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE69D4E0B90C6E05E263D48 /* Pods_RSSNewsReader.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		6397571B20EA05E700208382 /* FeedProviderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderCellView.swift; sourceTree = "<group>"; };
 		63C17B9720F1DA560062566D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		63C17BA620F23D820062566D /* RSSXmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSXmlParser.swift; sourceTree = "<group>"; };
+		63EF03C6210AFA4C00576A75 /* RSSUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSUtil.swift; sourceTree = "<group>"; };
 		651AC691DA758D32A610B698 /* Pods_RSSNewsReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSNewsReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F86080275E2994CAE789A9F /* Pods-RSSNewsReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSNewsReaderTests/Pods-RSSNewsReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		72DB7C5AEE1ADD191F335869 /* Pods-RSSNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSNewsReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSNewsReader/Pods-RSSNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		63362D6B20EE05D3003DB5FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				63EF03C5210AFA3C00576A75 /* Util */,
 				635A3AB020FFA97900350796 /* Manager */,
 				63C17B9420F102100062566D /* Model */,
 				63C17B9120F0FD3E0062566D /* Service */,
@@ -303,6 +306,14 @@
 				634C5C6C20F935050027CFC3 /* RSSArticle.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		63EF03C5210AFA3C00576A75 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				63EF03C6210AFA4C00576A75 /* RSSUtil.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		ACB03A2CCED6C0DEE0831D42 /* Frameworks */ = {
@@ -498,6 +509,7 @@
 				636A11D120EA20BA008164A1 /* NSColor+Extension.swift in Sources */,
 				634C5C6B20F934B10027CFC3 /* RSSProvider.swift in Sources */,
 				634C5C6F20FB0A420027CFC3 /* CoreDataInterface.swift in Sources */,
+				63EF03C7210AFA4C00576A75 /* RSSUtil.swift in Sources */,
 				63C17B9820F1DA560062566D /* NetworkService.swift in Sources */,
 				63919A52210271AE0055E6DB /* NSView+Rotate.swift in Sources */,
 				638B332820F4758A00E01B85 /* NSNotificationName+Extension.swift in Sources */,

@@ -126,7 +126,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
                                 <clipView key="contentView" id="mda-mO-5Ug">
                                     <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="110" viewBased="YES" id="M6c-Iz-3rS">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="220"/>
@@ -201,7 +201,7 @@
                                                             <connections>
                                                                 <outlet property="articleTitle" destination="YNo-ka-rmO" id="4VT-KF-nb4"/>
                                                                 <outlet property="providerName" destination="ASa-OV-oc4" id="xGu-hS-iQa"/>
-                                                                <outlet property="regDateAt" destination="Y7z-d1-gdX" id="kko-PV-cnu"/>
+                                                                <outlet property="publishedAt" destination="Y7z-d1-gdX" id="kko-PV-cnu"/>
                                                                 <outlet property="thumbnail" destination="9xW-7T-gRo" id="Agy-j7-wmt"/>
                                                             </connections>
                                                         </tableCellView>

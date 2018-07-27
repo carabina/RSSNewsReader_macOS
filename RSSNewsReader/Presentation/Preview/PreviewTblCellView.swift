@@ -12,5 +12,5 @@ class PreviewTblCellView: NSTableCellView {
     @IBOutlet weak var thumbnail: NSImageView!
     @IBOutlet weak var articleTitle: NSTextField!
     @IBOutlet weak var providerName: NSTextField!
-    @IBOutlet weak var regDateAt: NSTextField!
+    @IBOutlet weak var publishedAt: NSTextField!
 }
