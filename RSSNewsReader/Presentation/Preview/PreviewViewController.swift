@@ -13,6 +13,8 @@ class PreviewViewController: NSViewController {
     
     var provider: RSSProvider? {
         didSet {
+            self.articles.removeAll()
+        
             reloadArticles()
         }
     }
@@ -39,7 +41,6 @@ class PreviewViewController: NSViewController {
 
 // MARK: - Internal
 fileprivate extension PreviewViewController {
-    // TODO: 새로운 기사가 추가되면 insert 해주자 (with animation)
     func reloadArticles() {
         guard let providerName = provider?.title else {
             return
@@ -52,11 +53,32 @@ fileprivate extension PreviewViewController {
             return
         }
         
-        if let fetchedArticles = fetchResult.articles, !fetchedArticles.isEmpty {
-            self.articles = fetchedArticles
-            self.articles.sort(by: { $0.pubDate > $1.pubDate })
-            self.tableView.reloadData()
+        if var fetchedArticles = fetchResult.articles, !fetchedArticles.isEmpty {
+            fetchedArticles.sort(by: { $0.pubDate > $1.pubDate })
+            
+            if self.articles.isEmpty {
+                insertNewArticles(fetchedArticles)
+            } else if let firstArticle = self.articles.first, let firstFetched = fetchedArticles.first {
+                // TODO: 이 부분 테스트를 어떻게 할지??
+                if firstArticle.pubDate < firstFetched.pubDate {
+                    insertNewArticlesWithAnim(fetchedArticles)
+                }
+            }
         }
+    }
+    
+    func insertNewArticlesWithAnim(_ newArticles: [RSSArticle]) {
+        self.articles = newArticles
+        
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: IndexSet(integersIn: 0..<newArticles.count), withAnimation: NSTableView.AnimationOptions.slideDown)
+        self.tableView.endUpdates()
+    }
+    
+    func insertNewArticles(_ newArticles: [RSSArticle]) {
+        self.articles = newArticles
+        
+        self.tableView.reloadData()
     }
 }
 
