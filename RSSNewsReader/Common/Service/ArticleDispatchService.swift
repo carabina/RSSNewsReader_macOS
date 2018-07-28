@@ -48,14 +48,14 @@ extension ArticleDispatchService {
                 }
             }
             .forEach { provider in
-            NetworkService.shared.xml(url: provider.link, onCompletion: { (data, error) in
+            NetworkService.xml(url: provider.link, onCompletion: { (data, error) in
                 // 데이터가 없거나 파싱 에러가 발생하면 API 완료 처리함.
                 guard let _data = data, error == nil else {
                     remainCnt -= 1
                     return
                 }
                 
-                if let articles = RSSXmlParser.shared.parseArticles(data: _data) {
+                if let articles = RSSXmlParser.parseArticles(data: _data) {
                     if let error = CoreDataManager.shared.save(articles: articles) {
                         // TODO: 에러 처리 어떻게?? Alert로 띄우면 사알짝 거시기 함.
                         print(error)

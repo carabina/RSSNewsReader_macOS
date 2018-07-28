@@ -30,17 +30,17 @@ class RSSNewsReaderTests: XCTestCase {
         let rssURL = "http://techneedle.com/feed"
         let normalURL = "http://techneedle.com"
                 
-        NetworkService.shared.xml(url: rssURL) { (data, error) in
+        NetworkService.xml(url: rssURL) { (data, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
-            let provider = RSSXmlParser.shared.parseProvider(linkURL: rssURL, data: data!)
+            let provider = RSSXmlParser.parseProvider(linkURL: rssURL, data: data!)
             
             XCTAssertNotNil(provider)
             XCTAssertNotNil(provider!.title)
             XCTAssertNotNil(provider!.introduce)
             
-            NetworkService.shared.xml(url: normalURL) { (data, error) in
+            NetworkService.xml(url: normalURL) { (data, error) in
                 XCTAssertNotNil(data)
                 XCTAssertNotNil(error)
                 
@@ -57,11 +57,11 @@ class RSSNewsReaderTests: XCTestCase {
         let rssURL = "http://techneedle.com/feed"
         let normalURL = "http://techneedle.com"
         
-        NetworkService.shared.xml(url: rssURL) { (data, error) in
+        NetworkService.xml(url: rssURL) { (data, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             
-            let articles = RSSXmlParser.shared.parseArticles(data: data!)
+            let articles = RSSXmlParser.parseArticles(data: data!)
             
             XCTAssertNotNil(articles)
             
@@ -72,7 +72,7 @@ class RSSNewsReaderTests: XCTestCase {
                 XCTAssertNotNil(article.contents)
             }
             
-            NetworkService.shared.xml(url: normalURL, onCompletion: { (data, error) in
+            NetworkService.xml(url: normalURL, onCompletion: { (data, error) in
                 XCTAssertNotNil(data)
                 XCTAssertNotNil(error)
                 
@@ -101,7 +101,7 @@ class RSSNewsReaderTests: XCTestCase {
         let expt = expectation(description: "testAccessHttpImage")
         let url = "https://i2.wp.com/techneedle.com/wp-content/uploads/2018/03/cropped-tN-favicon.png?fit=32%2C32"
         
-        NetworkService.shared.image(url: url) { (image, error) in
+        NetworkService.image(url: url) { (image, error) in
             XCTAssertNotNil(image)
             XCTAssertNil(error)
             

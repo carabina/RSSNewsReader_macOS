@@ -24,7 +24,7 @@ class FeedProviderCellView: NSTableCellView {
             if let cachedImage = feedImageCache.object(forKey: NSString(string: imageURL)) {
                 feedImageView.image = cachedImage
             } else {
-                NetworkService.shared.image(url: imageURL) { [weak self] (image, error) in
+                NetworkService.image(url: imageURL) { [weak self] (image, error) in
                     guard error == nil else {
                         return
                     }

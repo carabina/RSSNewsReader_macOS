@@ -13,13 +13,13 @@ import SWXMLHash
 
 /// XML RSS를 파싱하는 클래스.
 class RSSXmlParser: NSObject {
-    static let shared = RSSXmlParser()
+
 }
 
 // MARK: - Interface
 extension RSSXmlParser {
     
-    func parseProvider(linkURL: String, data: Data) -> RSSProvider? {
+    class func parseProvider(linkURL: String, data: Data) -> RSSProvider? {
         let xml = SWXMLHash.parse(data)
         
         guard let title = xml["rss"]["channel"]["title"].element?.text else {
@@ -35,7 +35,7 @@ extension RSSXmlParser {
         return RSSProvider(title: title, introduce: introduce, link: linkURL, imageURL: imageURL)
     }
     
-    func parseArticles(data: Data) -> [RSSArticle]? {
+    class func parseArticles(data: Data) -> [RSSArticle]? {
         let xml = SWXMLHash.parse(data)
         var articles = [RSSArticle]()
         
@@ -71,7 +71,7 @@ extension RSSXmlParser {
 
 // MARK: - Internal
 fileprivate extension RSSXmlParser {
-    func stringToDate(_ dateStr: String) -> Date? {
+    class func stringToDate(_ dateStr: String) -> Date? {
         let formatter = DateFormatter()
         
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"

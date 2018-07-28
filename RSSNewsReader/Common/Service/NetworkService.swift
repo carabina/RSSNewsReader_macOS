@@ -10,10 +10,11 @@ import Cocoa
 import Alamofire
 
 /// Http 통신을 담당하는 클래스
-class NetworkService: NSObject {
-    static let shared = NetworkService()
-    
-    func image(url: String, onCompletion: @escaping (_ image: NSImage?, _ error: Error?) -> ()) {
+class NetworkService: NSObject { }
+
+// MARK: - Interface
+extension NetworkService {
+    class func image(url: String, onCompletion: @escaping (_ image: NSImage?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
         headers["Accept"] = "image/png"
         
@@ -34,7 +35,7 @@ class NetworkService: NSObject {
             }
     }
     
-    func xml(url: String, onCompletion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+    class func xml(url: String, onCompletion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
         headers["Accept"] = "application/rss+xml"
         

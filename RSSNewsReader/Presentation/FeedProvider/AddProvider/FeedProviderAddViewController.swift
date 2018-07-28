@@ -65,7 +65,7 @@ fileprivate extension FeedProviderAddViewController {
         
         isLoading = true
         
-        NetworkService.shared.xml(url: stringURL) { [weak self] (data, error) in
+        NetworkService.xml(url: stringURL) { [weak self] (data, error) in
             guard let weakSelf = self else {
                 return
             }
@@ -85,7 +85,7 @@ fileprivate extension FeedProviderAddViewController {
                 return
             }
             
-            if let provider = RSSXmlParser.shared.parseProvider(linkURL: stringURL, data: _data) {
+            if let provider = RSSXmlParser.parseProvider(linkURL: stringURL, data: _data) {
                 if let error = CoreDataManager.shared.save(provider: provider) {
                     AlertManager.shared.show(style: .critical, title: "웹사이트 추가 실패", message: error.localizedDescription)
                     
