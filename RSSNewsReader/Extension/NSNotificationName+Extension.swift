@@ -13,4 +13,6 @@ extension NSNotification.Name {
     static let newProviderAdded = NSNotification.Name("newProviderAdded")
     /// 새로운 뉴스 기사를 받아옴.
     static let newArticlesAdded = NSNotification.Name("newArticlesAdded")
+    /// 뉴스 기사를 받아오는 중임.
+    static let fetchingArticles = NSNotification.Name("fetchingArticles")
 }

@@ -30,7 +30,9 @@ extension ArticleDispatchService {
             return
         }
         
-        var remainCnt = providers.count {
+        NotificationCenter.default.post(name: NSNotification.Name.fetchingArticles, object: self)
+        
+        var remainCnt = (providerName != nil) ? 1 : providers.count {
             didSet {
                 if remainCnt == 0 {
                     NotificationCenter.default.post(name: NSNotification.Name.newArticlesAdded, object: self)
@@ -48,22 +50,22 @@ extension ArticleDispatchService {
                 }
             }
             .forEach { provider in
-            NetworkService.xml(url: provider.link, onCompletion: { (data, error) in
-                // 데이터가 없거나 파싱 에러가 발생하면 API 완료 처리함.
-                guard let _data = data, error == nil else {
-                    remainCnt -= 1
-                    return
-                }
-                
-                if let articles = RSSXmlParser.parseArticles(data: _data) {
-                    if let error = CoreDataManager.shared.save(articles: articles) {
-                        // TODO: 에러 처리 어떻게?? Alert로 띄우면 사알짝 거시기 함.
-                        print(error)
+                NetworkService.xml(url: provider.link, onCompletion: { (data, error) in
+                    // 데이터가 없거나 파싱 에러가 발생하면 API 완료 처리함.
+                    guard let _data = data, error == nil else {
+                        remainCnt -= 1
+                        return
+                    }
+                    
+                    if let articles = RSSXmlParser.parseArticles(data: _data) {
+                        if let error = CoreDataManager.shared.save(articles: articles) {
+                            // TODO: 에러 처리 어떻게?? Alert로 띄우면 사알짝 거시기 함.
+                            print(error)
+                        }
                     }
                     
                     remainCnt -= 1
-                }
-            })
-        }
+                })
+            }
     }
 }

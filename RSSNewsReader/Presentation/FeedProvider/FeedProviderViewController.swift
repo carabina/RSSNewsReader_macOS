@@ -36,10 +36,12 @@ class FeedProviderViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotificationNotified(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewProviderAddedNotification(_:)), name: NSNotification.Name.newProviderAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewArticlesAddedNotification(_:)), name: NSNotification.Name.newArticlesAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onFetchingArticleNotification(_:)), name: NSNotification.Name.fetchingArticles, object: nil)
 
         self.preferredContentSize = NSSize(width: 200, height: 500)
-        
+                
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = NSColor.clear
@@ -63,8 +65,16 @@ class FeedProviderViewController: NSViewController {
     }
     
     // MARK: - Notification
-    @objc func onNewProviderAddedNotificationNotified(_ notification: NSNotification) {
+    @objc func onNewProviderAddedNotification(_ notification: NSNotification) {
         self.reloadProviders()
+    }
+    
+    @objc func onFetchingArticleNotification(_ notification: NSNotification) {
+        self.isLoading = true
+    }
+    
+    @objc func onNewArticlesAddedNotification(_ notification: NSNotification) {
+        self.isLoading = false
     }
     
     // MARK: - TableView Action
@@ -82,28 +92,20 @@ class FeedProviderViewController: NSViewController {
 // MARK: - Internal
 fileprivate extension FeedProviderViewController {
     func reloadProviders() {
-        self.isLoading = true
-        
         let fetchResult = CoreDataManager.shared.fetchProvider()
         
         guard let providers = fetchResult.provider, !providers.isEmpty else {
-            self.isLoading = false
             return
         }
         
         guard fetchResult.error == nil else {
             AlertManager.shared.show(style: .critical, title: "웹사이트 로딩 실패", message: fetchResult.error!.localizedDescription)
-            
-            self.isLoading = false
-            
             return
         }
         
         self.providers = providers
         
         self.tableView.reloadData()
-        
-        self.isLoading = false
     }
 }
 
