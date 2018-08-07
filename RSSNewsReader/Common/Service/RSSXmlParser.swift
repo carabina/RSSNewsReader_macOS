@@ -12,9 +12,7 @@ import SWXMLHash
 // TODO: Error 처리 해야함.
 
 /// XML RSS를 파싱하는 클래스.
-class RSSXmlParser: NSObject {
-
-}
+class RSSXmlParser: NSObject { }
 
 // MARK: - Interface
 extension RSSXmlParser {
@@ -74,7 +72,7 @@ fileprivate extension RSSXmlParser {
     class func stringToDate(_ dateStr: String) -> Date? {
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz" // TODO: Endgadget에서 맨 마지막 부분을 "-0400" 형태로 떨어뜨려 줌.
         formatter.locale = Locale(identifier: "US_en")
         
         return formatter.date(from: dateStr)

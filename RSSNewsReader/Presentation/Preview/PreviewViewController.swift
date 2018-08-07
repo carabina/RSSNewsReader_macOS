@@ -67,16 +67,18 @@ fileprivate extension PreviewViewController {
         }
     }
     
-    func insertNewArticlesWithAnim(_ newArticles: [RSSArticle]) {
-        self.articles = newArticles
+    func insertNewArticlesWithAnim(_ fetchedArticles: [RSSArticle]) {
+        let newArticlesCnt = fetchedArticles.count - self.articles.count
+        
+        self.articles = fetchedArticles
         
         self.tableView.beginUpdates()
-        self.tableView.insertRows(at: IndexSet(integersIn: 0..<newArticles.count), withAnimation: NSTableView.AnimationOptions.slideDown)
+        self.tableView.insertRows(at: IndexSet(integersIn: 0..<newArticlesCnt), withAnimation: NSTableView.AnimationOptions.slideDown)
         self.tableView.endUpdates()
     }
     
-    func insertNewArticles(_ newArticles: [RSSArticle]) {
-        self.articles = newArticles
+    func insertNewArticles(_ fetchedArticles: [RSSArticle]) {
+        self.articles = fetchedArticles
         
         self.tableView.reloadData()
     }

@@ -37,7 +37,7 @@ extension NetworkService {
     
     class func xml(url: String, onCompletion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
-        headers["Accept"] = "application/rss+xml"
+        headers["Accept"] = "text/xml; application/rss+xml; application/xml"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
             .validate()

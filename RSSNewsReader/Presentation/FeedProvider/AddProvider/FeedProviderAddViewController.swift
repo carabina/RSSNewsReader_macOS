@@ -59,7 +59,7 @@ fileprivate extension FeedProviderAddViewController {
         
         var stringURL = textField.stringValue
         
-        if !stringURL.hasPrefix("http://") {
+        if !stringURL.hasPrefix("http://") && !stringURL.hasPrefix("https://") {
             stringURL.insert(contentsOf: "http://", at: stringURL.startIndex)
         }
         

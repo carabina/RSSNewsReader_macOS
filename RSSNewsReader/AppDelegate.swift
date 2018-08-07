@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // TODO: ArticleDisaptchService timer 시작해야 함.
+        ArticleDispatchService.shared.dispatch(providerName: nil, onCompletion: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
