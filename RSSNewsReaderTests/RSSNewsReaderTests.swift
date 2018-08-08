@@ -69,7 +69,7 @@ class RSSNewsReaderTests: XCTestCase {
                 XCTAssertNotNil(article.title)
                 XCTAssertNotNil(article.link)
                 XCTAssertNotNil(article.pubDate)
-                XCTAssertNotNil(article.contents)
+                XCTAssertNotNil(article.desc)
             }
             
             NetworkService.xml(url: normalURL, onCompletion: { (data, error) in

@@ -52,7 +52,7 @@ extension RSSXmlParser {
                 continue
             }
             
-            guard let contents = item["description"].element?.text else {
+            guard let desc = item["description"].element?.text else {
                 continue
             }
             
@@ -60,7 +60,9 @@ extension RSSXmlParser {
                 continue
             }
             
-            articles.append(RSSArticle(providerName: providerName, title: title, link: link, contents: contents, pubDate: stringToDate(dateString)!))
+            
+            
+            articles.append(RSSArticle(providerName: providerName, title: title, link: link, desc: desc, pubDate: stringToDate(dateString)!))
         }
 
         return articles

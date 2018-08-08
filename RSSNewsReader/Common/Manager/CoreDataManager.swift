@@ -126,7 +126,7 @@ extension CoreDataManager {
                 coreArticle.setValue(article.providerName, forKey: "providerName")
                 coreArticle.setValue(article.title, forKey: "title")
                 coreArticle.setValue(article.link, forKey: "link")
-                coreArticle.setValue(article.contents, forKey: "contents")
+                coreArticle.setValue(article.desc, forKey: "contents")
                 coreArticle.setValue(article.pubDate, forKey: "pubDate")
                 
                 coreProvider.addToArticle(coreArticle)
