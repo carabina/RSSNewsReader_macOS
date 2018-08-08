@@ -76,7 +76,7 @@ fileprivate extension RSSXmlParser {
     class func stringToDate(_ dateStr: String) -> Date? {
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz" // TODO: Endgadget에서 맨 마지막 부분을 "-0400" 형태로 떨어뜨려 줌.
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzzz"
         formatter.locale = Locale(identifier: "US_en")
         
         return formatter.date(from: dateStr)
