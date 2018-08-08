@@ -33,8 +33,10 @@ class PreviewViewController: NSViewController {
         tableView.delegate = self
         tableView.selectionHighlightStyle = .none
     }
-    
-    // MARK: - Notification
+}
+
+// MARK: - Notification
+extension PreviewViewController {
     @objc func onNewArticleAddedNotification(_ notification: NSNotification) {
         reloadArticles()
     }
@@ -120,5 +122,15 @@ extension PreviewViewController: NSTableViewDelegate {
         }
         
         return view
+    }
+    
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        guard let parent = parent as? MainSplitViewController else { return false }
+        
+        if let detailVC = parent.detailViewController {
+            detailVC.article = articles[row]
+        }
+        
+        return true
     }
 }

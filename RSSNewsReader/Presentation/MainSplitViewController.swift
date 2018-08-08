@@ -12,12 +12,14 @@ class MainSplitViewController: NSSplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     var previewViewController: PreviewViewController? {
         return (self.childViewControllers.filter { $0.className == PreviewViewController.className() }.first) as? PreviewViewController
+    }
+    
+    var detailViewController: DetailViewController? {
+        return (self.childViewControllers.filter { $0.className == DetailViewController.className() }.first) as? DetailViewController
     }
 }
 
