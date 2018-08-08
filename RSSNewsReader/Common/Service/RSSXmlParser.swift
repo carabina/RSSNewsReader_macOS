@@ -8,6 +8,7 @@
 
 import Cocoa
 import SWXMLHash
+import SwiftSoup
 
 // TODO: Error 처리 해야함.
 
@@ -60,9 +61,10 @@ extension RSSXmlParser {
                 continue
             }
             
+            let article = RSSArticle(providerName: providerName, title: title, link: link, desc: desc, pubDate: stringToDate(dateString)!)
+            article.thumbnailURL = thumbnailURL(rawHTML: desc)
             
-            
-            articles.append(RSSArticle(providerName: providerName, title: title, link: link, desc: desc, pubDate: stringToDate(dateString)!))
+            articles.append(article)
         }
 
         return articles
@@ -78,5 +80,20 @@ fileprivate extension RSSXmlParser {
         formatter.locale = Locale(identifier: "US_en")
         
         return formatter.date(from: dateStr)
+    }
+    
+    /// description 태그의 가장 첫 번째 img를 thumbnail로 판단하여 image url을 가져오도록 함.
+    class func thumbnailURL(rawHTML: String) -> String? {
+        do {
+            let doc = try SwiftSoup.parse(rawHTML)
+            if let img = try doc.select("img").first() {
+                return try img.attr("src")
+            }
+        } catch Exception.Error(let type, let message) {
+            print(type)
+            print(message)
+        } catch { }
+        
+        return nil
     }
 }

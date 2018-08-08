@@ -16,7 +16,7 @@ class NetworkService: NSObject { }
 extension NetworkService {
     class func image(url: String, onCompletion: @escaping (_ image: NSImage?, _ error: Error?) -> ()) {
         var headers = HTTPHeaders()
-        headers["Accept"] = "image/png"
+        headers["Accept"] = "image/*"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
             .validate()

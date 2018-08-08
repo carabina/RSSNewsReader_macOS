@@ -16,7 +16,6 @@ class RSSArticle: NSObject, CoreDataInterface {
     var pubDate: Date
     
     var thumbnailURL: String?
-    var thumbnail: NSImage?
     
     static func entity() -> String {
         return "\(CoreArticle.self)"
@@ -34,7 +33,8 @@ class RSSArticle: NSObject, CoreDataInterface {
         self.providerName = managedObject.value(forKey: "providerName") as! String
         self.title = managedObject.value(forKey: "title") as! String
         self.link = managedObject.value(forKey: "link") as! String
-        self.desc = managedObject.value(forKey: "contents") as! String
+        self.desc = managedObject.value(forKey: "desc") as! String
         self.pubDate = managedObject.value(forKey: "pubDate") as! Date
+        self.thumbnailURL = managedObject.value(forKey: "thumbnailURL") as? String
     }
 }

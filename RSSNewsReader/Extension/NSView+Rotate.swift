@@ -22,6 +22,7 @@ extension NSView {
         }
         
         // TODO: 개삽질 했는데 anchor point가 계속 0.0, 0.0 으로 설정되어있음. 뭐가 문제지...
+        // TODO: iOS에서는 문제 없이 잘 작동함.
         layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         layer.add(rotateAnimation, forKey: "rotation")
     }

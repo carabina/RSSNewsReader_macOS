@@ -20,6 +20,7 @@ class PreviewViewController: NSViewController {
     }
 
     fileprivate var articles = [RSSArticle]()
+    fileprivate var thumbnailCache = NSCache<NSString, NSImage>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +103,20 @@ extension PreviewViewController: NSTableViewDelegate {
         
         if let diffDays = RSSUtil.diffBetweenDays(article.pubDate, Date()) {
             view.publishedAt.stringValue = (diffDays == 0) ? "오늘" : String(format: "%d일 전", diffDays)
+        }
+        
+        // Thumbnail Cache
+        if let thumbnailURL = article.thumbnailURL {
+            if let cachedImage = thumbnailCache.object(forKey: NSString(string: thumbnailURL)) {
+                view.thumbnail.image = cachedImage
+            } else {
+                view.thumbnail.setImage(url: thumbnailURL) { [weak self] (image, error) in
+                    guard let weakSelf = self else { return }
+                    guard let _image = image else { return }
+                    
+                    weakSelf.thumbnailCache.setObject(_image, forKey: NSString(string: thumbnailURL))
+                }
+            }
         }
         
         return view
